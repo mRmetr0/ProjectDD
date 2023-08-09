@@ -2140,6 +2140,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4565249152526225829, guid: 968b049995bc5e843a87286dea8cf512,
         type: 3}
+      propertyPath: maxHealth
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4565249152526225829, guid: 968b049995bc5e843a87286dea8cf512,
+        type: 3}
       propertyPath: skills.Array.data[1]
       value: 
       objectReference: {fileID: 11400000, guid: 0c661d2beef3d5449bcf5f6fd26bf2c9,

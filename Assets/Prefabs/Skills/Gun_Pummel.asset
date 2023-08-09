@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fb6263d2a3e04844abe804612462306, type: 3}
   m_Name: Gun_Pummel
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: c05cced03e47d8149b3f395598735a55, type: 3}
+  sprite: {fileID: 21300000, guid: edb616ed1121e9343a3ebb7700e8c75b, type: 3}
   value: 1
   positionsToUse: 01010000
   positionsToHit: 01010000
-  usable: 0
+  usable: 1
   type: 0
   selectType: 2
   movePlayer: -1
+  moveEnemy: 0
+  description: "Melee\nUsable: - - 0 0 \nHit in: 0 0 - - \nBack 1 "

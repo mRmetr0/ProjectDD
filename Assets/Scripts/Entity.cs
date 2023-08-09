@@ -55,6 +55,7 @@ public class Entity : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         healthBar.SetBarActive(false);
+        HUDManager.Instance.SetText();
         BattleManager.Instance.NextTurn();
     }
 
@@ -86,25 +87,24 @@ public class Entity : MonoBehaviour
         (Position, party[newPos].Position) =
             (party[newPos].Position, oldPos);
         
-        (party[newPos].gameObject.transform.position, transform.position) = 
-            (transform.position, party[newPos].gameObject.transform.position);
+        StartCoroutine(LerpMove(party[newPos].gameObject.transform, transform));
         
-        (party[newPos], party[oldPos]) = 
-            (party[oldPos], party[newPos]);
+        (party[newPos], party[oldPos]) = (party[oldPos], party[newPos]);
     }
 
     private IEnumerator LerpMove(Transform Tf1, Transform Tf2)
     {
         Vector3 newPos1 = Tf2.position, newPos2 = Tf1.position;
-        float elapsedTime = 0, waitTime = 1.0f;
+        float elapsedTime = 0, waitTime = 1.5f;
         while (elapsedTime < waitTime)
         {
+            elapsedTime += Time.deltaTime;
             Tf1.position = Vector3.Lerp(Tf1.position, newPos1, (elapsedTime/waitTime));
             Tf2.position = Vector3.Lerp(Tf2.position, newPos2, (elapsedTime/waitTime));
             yield return null;
         }
 
-        Tf1.position = newPos2;
+        Tf1.position = newPos1;
         Tf2.position = newPos2;
         yield return null;
     }

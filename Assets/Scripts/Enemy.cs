@@ -8,17 +8,22 @@ public class Enemy : Entity
 {
     public override void ActTurn()
     {
-        StartCoroutine(UseSkill());
+        Skill skill = SelectSkill();
+        HUDManager.Instance.SetText(skill.name);
+        StartCoroutine(UseSkill(skill));
     }
 
-    private IEnumerator UseSkill()
+    private IEnumerator UseSkill(Skill pSkill)
     {
         yield return new WaitForSeconds(1);
-        ActSkill();
+        
+        if (pSkill != null)
+            pSkill.Use(Skill.ToCheck.Heroes);
+        
         StartCoroutine(TurnEnd());
     }
 
-    private void ActSkill()
+    private Skill SelectSkill()
     { 
         List<Skill> usable = skills.ToList();
         for (int i = usable.Count-1; i >= 0; i--)
@@ -28,11 +33,10 @@ public class Enemy : Entity
                 usable.Remove(skill);
         }
 
-        if (usable.Count == 0) return;
+        if (usable.Count == 0) return null;
 
         Random r = new System.Random();
         int n = r.Next(0, usable.Count - 1);
-        Skill toUSe = skills[n];
-        toUSe.Use(Skill.ToCheck.Heroes);
+        return skills[n];
     }
 }
