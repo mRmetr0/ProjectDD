@@ -683,6 +683,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &510690669 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4631862729246994798, guid: 322907b6183189c438a7a53acf5996ba,
+    type: 3}
+  m_PrefabInstance: {fileID: 1359176983}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &552381389
 GameObject:
   m_ObjectHideFlags: 0
@@ -1774,20 +1780,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4565249152526225829, guid: 322907b6183189c438a7a53acf5996ba,
         type: 3}
+      propertyPath: weapon
+      value: 
+      objectReference: {fileID: 1896006595616492748, guid: 14351f4f446dd314690b63164d49ec9e,
+        type: 3}
+    - target: {fileID: 4565249152526225829, guid: 322907b6183189c438a7a53acf5996ba,
+        type: 3}
       propertyPath: maxHealth
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4565249152526225829, guid: 322907b6183189c438a7a53acf5996ba,
         type: 3}
+      propertyPath: weaponSlot
+      value: 
+      objectReference: {fileID: 510690669}
+    - target: {fileID: 4565249152526225829, guid: 322907b6183189c438a7a53acf5996ba,
+        type: 3}
+      propertyPath: skills.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4565249152526225829, guid: 322907b6183189c438a7a53acf5996ba,
+        type: 3}
       propertyPath: skills.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 155c547d317d863478e9da67aad7fef9,
+      objectReference: {fileID: 11400000, guid: 39d3d5605ce013247861b1aaa175747b,
         type: 2}
     - target: {fileID: 4565249152526225829, guid: 322907b6183189c438a7a53acf5996ba,
         type: 3}
       propertyPath: skills.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: 39d3d5605ce013247861b1aaa175747b,
+      objectReference: {fileID: 11400000, guid: 33d34080cad941441b615594b57b14d0,
         type: 2}
     - target: {fileID: 4565249152526225829, guid: 322907b6183189c438a7a53acf5996ba,
         type: 3}
@@ -1795,6 +1817,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 33d34080cad941441b615594b57b14d0,
         type: 2}
+    - target: {fileID: 4631862729256574758, guid: 322907b6183189c438a7a53acf5996ba,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 053ee9efcc9245c46b3f7792e982cabb, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 322907b6183189c438a7a53acf5996ba, type: 3}
 --- !u!114 &1359176984 stripped
@@ -1821,6 +1848,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b038fa5350e269048b069060316475a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1556500897 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7668938569948049568, guid: 3ed654fb339d5e64db397b197a7a57ce,
+    type: 3}
+  m_PrefabInstance: {fileID: 7668938569278532740}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1584585406
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2488,25 +2521,37 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4565249152526225829, guid: 968b049995bc5e843a87286dea8cf512,
         type: 3}
+      propertyPath: weapon
+      value: 
+      objectReference: {fileID: 6967678601977394061, guid: fb2fb5cc363acea4bbe621ec1f5d068b,
+        type: 3}
+    - target: {fileID: 4565249152526225829, guid: 968b049995bc5e843a87286dea8cf512,
+        type: 3}
       propertyPath: maxHealth
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4565249152526225829, guid: 968b049995bc5e843a87286dea8cf512,
         type: 3}
       propertyPath: skills.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4565249152526225829, guid: 968b049995bc5e843a87286dea8cf512,
         type: 3}
-      propertyPath: skills.Array.data[1]
+      propertyPath: skills.Array.data[0]
       value: 
       objectReference: {fileID: 11400000, guid: 0c661d2beef3d5449bcf5f6fd26bf2c9,
         type: 2}
     - target: {fileID: 4565249152526225829, guid: 968b049995bc5e843a87286dea8cf512,
         type: 3}
-      propertyPath: skills.Array.data[2]
+      propertyPath: skills.Array.data[1]
       value: 
       objectReference: {fileID: 11400000, guid: de56919ccf9d1b144a54096f8cf96382,
+        type: 2}
+    - target: {fileID: 4565249152526225829, guid: 968b049995bc5e843a87286dea8cf512,
+        type: 3}
+      propertyPath: skills.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 33d34080cad941441b615594b57b14d0,
         type: 2}
     - target: {fileID: 4565249152526225829, guid: 968b049995bc5e843a87286dea8cf512,
         type: 3}
@@ -2514,6 +2559,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 33d34080cad941441b615594b57b14d0,
         type: 2}
+    - target: {fileID: 6385254679567071563, guid: 968b049995bc5e843a87286dea8cf512,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 053ee9efcc9245c46b3f7792e982cabb, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 968b049995bc5e843a87286dea8cf512, type: 3}
 --- !u!1001 &7496188629716913924
@@ -2611,6 +2661,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 120
       objectReference: {fileID: 0}
+    - target: {fileID: 7668938569948081384, guid: 3ed654fb339d5e64db397b197a7a57ce,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7668938569957596904, guid: 3ed654fb339d5e64db397b197a7a57ce,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 053ee9efcc9245c46b3f7792e982cabb, type: 2}
     - target: {fileID: 7668938570125791229, guid: 3ed654fb339d5e64db397b197a7a57ce,
         type: 3}
       propertyPath: m_Name
@@ -2676,6 +2736,28 @@ PrefabInstance:
       propertyPath: speed
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 7668938570125791231, guid: 3ed654fb339d5e64db397b197a7a57ce,
+        type: 3}
+      propertyPath: weapon
+      value: 
+      objectReference: {fileID: 1896006595616492748, guid: 14351f4f446dd314690b63164d49ec9e,
+        type: 3}
+    - target: {fileID: 7668938570125791231, guid: 3ed654fb339d5e64db397b197a7a57ce,
+        type: 3}
+      propertyPath: weaponSlot
+      value: 
+      objectReference: {fileID: 1556500897}
+    - target: {fileID: 7668938570125791231, guid: 3ed654fb339d5e64db397b197a7a57ce,
+        type: 3}
+      propertyPath: skills.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7668938570125791231, guid: 3ed654fb339d5e64db397b197a7a57ce,
+        type: 3}
+      propertyPath: skills.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 33d34080cad941441b615594b57b14d0,
+        type: 2}
     - target: {fileID: 7668938570125791231, guid: 3ed654fb339d5e64db397b197a7a57ce,
         type: 3}
       propertyPath: skills.Array.data[2]

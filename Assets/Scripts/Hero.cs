@@ -1,13 +1,28 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Cryptography;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = System.Random;
 
 public class Hero : Entity
 {
+    [SerializeField] private Weapon weapon;
+    [SerializeField] private Transform weaponSlot;
     private int _stress;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        Animator.SetBool("IsRanged", weapon.type == Weapon.Type.Ranged);
+        weapon = Instantiate(weapon, weaponSlot);
+
+        List<Skill> list = skills.ToList(); 
+        if (weapon != null) list.Add(weapon.skill);
+        skills = list.ToArray();
+    }
 
     public void TestResolve()
     {

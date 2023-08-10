@@ -53,6 +53,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   healthBar: {fileID: 6263507557811675440}
+  weapon: {fileID: 0}
+  weaponSlot: {fileID: 6385254679557183235}
 --- !u!1001 &2753124860301573885
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -269,6 +271,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6fb37f825ee63264b9c2600bf1a52006, type: 3}
+--- !u!4 &6385254679557183235 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7478225697115775102, guid: 6fb37f825ee63264b9c2600bf1a52006,
+    type: 3}
+  m_PrefabInstance: {fileID: 4565249152495171453}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6385254679557183245 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7478225697115775088, guid: 6fb37f825ee63264b9c2600bf1a52006,

@@ -18,7 +18,7 @@ public class Entity : MonoBehaviour
     public int Speed => speed;
     public int hp => Health;
 
-    public void Awake()
+    protected virtual void Awake()
     {
         Health = maxHealth;
         Animator = GetComponentInChildren<Animator>();
