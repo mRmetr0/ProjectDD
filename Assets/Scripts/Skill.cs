@@ -31,7 +31,7 @@ public class Skill : ScriptableObject
     }
 
     public Sprite sprite;
-    public int value;
+    public Vector2Int values;
     public bool[] positionsToUse = {false, false,false,false};
     public bool[] positionsToHit = {false, false,false,false};
     public bool usable;
@@ -40,6 +40,7 @@ public class Skill : ScriptableObject
     public int movePlayer;
     public int moveEnemy;
     public string description;
+    private System.Random rand = new System.Random();
 
     private void OnValidate()
     {
@@ -49,6 +50,13 @@ public class Skill : ScriptableObject
             Array.Resize(ref positionsToUse, 4);
             Array.Resize(ref positionsToHit, 4);
         }
+
+        if (values.x > values.y)
+        {
+            Debug.LogWarning("MAX DAMANGE HAS TO BE LARGER THEN MINIMUM DAMAGE");
+            values.y = values.x + 1;
+        }
+
         SetDescription();
     }
     
@@ -117,7 +125,7 @@ public class Skill : ScriptableObject
         {
             Entity opponent = opponents[i];
             if (!positionsToHit[opponent.Position]) continue;
-            opponent.TakeDamage(value, moveEnemy);
+            opponent.TakeDamage(CalcDamage(), moveEnemy);
             BattleManager.CurrentPlayer.Animate(type);
         }
     }
@@ -133,10 +141,13 @@ public class Skill : ScriptableObject
                 hitable.Add(opponents[i]);
         }
         if (opponents.Length == 0) return;
-        
-        System.Random r = new System.Random();
-        Entity opponent = hitable[r.Next(0, hitable.Count)];
-        opponent.TakeDamage(value, moveEnemy);
+        Entity opponent = hitable[rand.Next(0, hitable.Count)];
+        opponent.TakeDamage(CalcDamage(), moveEnemy);
         BattleManager.CurrentPlayer.Animate(type);
+    }
+
+    private int CalcDamage()
+    {
+        return rand.Next(values.x, values.y);
     }
 }

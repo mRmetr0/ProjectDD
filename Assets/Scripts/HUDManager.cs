@@ -16,7 +16,7 @@ public class HUDManager : MonoBehaviour
     
     [SerializeField] private Button[] buttons;
     [SerializeField] private TMP_Text title, description;
-    private SkillButton[] _skills;
+    private SkillButton[] _skillButtons;
     private Skill _toUse;
     private Canvas _canvas;
 
@@ -29,13 +29,21 @@ public class HUDManager : MonoBehaviour
         }
         Instance = this;
 
-        _skills = new SkillButton[buttons.Length];
+        _skillButtons = new SkillButton[buttons.Length];
         for (int i = 0; i < buttons.Length; i++)
         {
             Button button = buttons[i];
             SkillButton skillButton = button.AddComponent<SkillButton>();
             skillButton.Initialize(button, this);
-            _skills[i] = skillButton;
+            _skillButtons[i] = skillButton;
+            try
+            {
+                TMP_Text text = button.GetComponentInChildren<TMP_Text>();
+                Destroy(text);
+            }
+            catch (Exception e){
+                Debug.Log($"failed :(, Exception: {e}");
+            }
         }
 
         _canvas = GetComponent<Canvas>();
@@ -45,9 +53,15 @@ public class HUDManager : MonoBehaviour
 
     public void SetSkillButtons(Skill[] pSkills)
     {
-        for (int i = 0; i < buttons.Length; i++)
+        for (int i = 0; i < _skillButtons.Length; i++)
         {
-            _skills[i].Assign(pSkills[i]);
+            if (i + 1 > pSkills.Length)
+            {
+                _skillButtons[i].Assign(null);
+                continue;
+            }
+
+            _skillButtons[i].Assign(pSkills[i]);
         }
 
         _canvas.enabled = true;
@@ -99,15 +113,15 @@ public class SkillButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     private void OnButtonPress()
     {
         _manager.OnSkillActivate(_skill);
-        HUDManager.Instance.SetText();
+        _manager.SetText();
     }
 
     public void OnPointerEnter(PointerEventData Event)
     {
-        HUDManager.Instance.SetText(_skill.name, _skill.description);
+        _manager.SetText(_skill.name, _skill.description);
     }
     public void OnPointerExit(PointerEventData Event)
     {
-        HUDManager.Instance.SetText();
+        _manager.SetText();
     }
 }
