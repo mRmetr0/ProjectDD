@@ -15,6 +15,7 @@ public class HUDManager : MonoBehaviour
     public static HUDManager Instance;
     
     [SerializeField] private Button[] buttons;
+    [SerializeField] private Button switchButton;
     [SerializeField] private TMP_Text title, description;
     private SkillButton[] _skillButtons;
     private Skill _toUse;
@@ -45,6 +46,7 @@ public class HUDManager : MonoBehaviour
                 Debug.Log($"failed :(, Exception: {e}");
             }
         }
+        switchButton.onClick.AddListener(SwitchCharacterWeapon);
 
         _canvas = GetComponent<Canvas>();
         _canvas.enabled = false;
@@ -60,10 +62,11 @@ public class HUDManager : MonoBehaviour
                 _skillButtons[i].Assign(null);
                 continue;
             }
-
             _skillButtons[i].Assign(pSkills[i]);
         }
-
+        Hero hero = BattleManager.CurrentPlayer as Hero;
+        switchButton.gameObject.SetActive(hero.CanSwitch());
+        
         _canvas.enabled = true;
     }
 
@@ -80,6 +83,11 @@ public class HUDManager : MonoBehaviour
         pDesc = pDesc.Replace("_", " ");
         title.text = pTitle;
         description.text = pDesc;
+    }
+
+    private void SwitchCharacterWeapon()
+    {
+        (BattleManager.CurrentPlayer as Hero)?.SwitchWeapons();
     }
 }
 

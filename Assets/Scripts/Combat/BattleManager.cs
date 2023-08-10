@@ -88,15 +88,6 @@ public class BattleManager : MonoBehaviour
         }
 
         CurrentPlayer = _turnOrder[_turn];
-        if (CurrentPlayer.hp <= 0)
-        {
-            _turnOrder.Remove(CurrentPlayer);
-            _turn++;
-            Debug.Log("REMOVED PLAYER");
-            NextTurn();
-            return;
-        }
-
         CurrentPlayer.TurnStart();
     }
 

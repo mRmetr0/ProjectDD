@@ -47,12 +47,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 15
-  speed: 2
+  speed: 3
   skills:
   - {fileID: 11400000, guid: c6562f30f210fe741890c5d7e41fd3c6, type: 2}
-  - {fileID: 11400000, guid: 337af391f3cfd1e4abd46b4f9afd6812, type: 2}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 33d34080cad941441b615594b57b14d0, type: 2}
   healthBar: {fileID: 6013250941853211019}
+  primary: {fileID: 0}
+  secondary: {fileID: 0}
+  primarySlot: {fileID: 0}
+  secondarySlot: {fileID: 0}
+  equipSlot: {fileID: 0}
 --- !u!1001 &2569929580000642630
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -219,7 +223,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400166, guid: fdfb5e1c4a1b339489c0eddebb1ab872, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.49999994
       objectReference: {fileID: 0}
     - target: {fileID: 400166, guid: fdfb5e1c4a1b339489c0eddebb1ab872, type: 3}
       propertyPath: m_LocalRotation.x
@@ -227,7 +231,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400166, guid: fdfb5e1c4a1b339489c0eddebb1ab872, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.86602545
       objectReference: {fileID: 0}
     - target: {fileID: 400166, guid: fdfb5e1c4a1b339489c0eddebb1ab872, type: 3}
       propertyPath: m_LocalRotation.z
@@ -239,7 +243,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400166, guid: fdfb5e1c4a1b339489c0eddebb1ab872, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 400166, guid: fdfb5e1c4a1b339489c0eddebb1ab872, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z

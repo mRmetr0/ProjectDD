@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3463256467251358971
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7583522495243062727}
+  m_Layer: 0
+  m_Name: PrimaryHolster
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7583522495243062727
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3463256467251358971}
+  m_LocalRotation: {x: 0, y: -0.95921534, z: 0, w: 0.2826763}
+  m_LocalPosition: {x: -0.471, y: -0.242, z: 0.123}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6385254679557183155}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: -147.16, z: 0}
 --- !u!1 &4565249152526225826
 GameObject:
   m_ObjectHideFlags: 0
@@ -47,12 +78,48 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 20
-  speed: 5
+  speed: 2
   skills:
-  - {fileID: 11400000, guid: 25b796a89f9174748bb920f1e3709b45, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 0c661d2beef3d5449bcf5f6fd26bf2c9, type: 2}
+  - {fileID: 11400000, guid: de56919ccf9d1b144a54096f8cf96382, type: 2}
+  - {fileID: 11400000, guid: 33d34080cad941441b615594b57b14d0, type: 2}
   healthBar: {fileID: 6263507557811675440}
+  primary: {fileID: 0}
+  secondary: {fileID: 0}
+  primarySlot: {fileID: 7583522495243062727}
+  secondarySlot: {fileID: 8911351396214585738}
+  equipSlot: {fileID: 6385254679557183235}
+--- !u!1 &6605271491914771426
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8911351396214585738}
+  m_Layer: 0
+  m_Name: SecondarySlot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8911351396214585738
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6605271491914771426}
+  m_LocalRotation: {x: 0.5696282, y: -0.25170207, z: -0.18883139, w: 0.7592842}
+  m_LocalPosition: {x: 0.067, y: 0.1, z: 0.142}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 6385254679557183119}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 50.35, y: -69.416, z: -63.999}
 --- !u!1001 &2753124860301573885
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -262,6 +329,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7478225697116208134, guid: 6fb37f825ee63264b9c2600bf1a52006,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7478225697116208144, guid: 6fb37f825ee63264b9c2600bf1a52006,
         type: 3}
       propertyPath: m_Name
@@ -269,6 +341,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6fb37f825ee63264b9c2600bf1a52006, type: 3}
+--- !u!4 &6385254679557183119 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7478225697115775474, guid: 6fb37f825ee63264b9c2600bf1a52006,
+    type: 3}
+  m_PrefabInstance: {fileID: 4565249152495171453}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6385254679557183155 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7478225697115775438, guid: 6fb37f825ee63264b9c2600bf1a52006,
+    type: 3}
+  m_PrefabInstance: {fileID: 4565249152495171453}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6385254679557183235 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7478225697115775102, guid: 6fb37f825ee63264b9c2600bf1a52006,
+    type: 3}
+  m_PrefabInstance: {fileID: 4565249152495171453}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6385254679557183245 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7478225697115775088, guid: 6fb37f825ee63264b9c2600bf1a52006,

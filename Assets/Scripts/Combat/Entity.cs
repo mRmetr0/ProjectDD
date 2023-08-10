@@ -29,6 +29,7 @@ public class Entity : MonoBehaviour
         Health -= pDamage;
         Move(pMove);
         healthBar.UpdateUI(Health, maxHealth);
+        Debug.Log($"{this.name}: {hp}");
         if (Health <= 0)
         {
             Die();
@@ -40,6 +41,7 @@ public class Entity : MonoBehaviour
 
     private void Die()
     {
+        Debug.Log(Animator);
         Animator.SetTrigger("Die");
         BattleManager.Instance.RemoveCharacter(this);
     }
@@ -62,6 +64,7 @@ public class Entity : MonoBehaviour
 
     public void Animate(Skill.Type pType)
     {
+        Debug.Log(Animator);
         switch (pType)
         {
             case (Skill.Type.Melee):

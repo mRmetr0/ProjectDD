@@ -46,13 +46,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b038fa5350e269048b069060316475a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 20
-  speed: 5
+  maxHealth: 15
+  speed: 8
   skills:
-  - {fileID: 11400000, guid: 25b796a89f9174748bb920f1e3709b45, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 39d3d5605ce013247861b1aaa175747b, type: 2}
+  - {fileID: 11400000, guid: 33d34080cad941441b615594b57b14d0, type: 2}
   healthBar: {fileID: 6263507557811675440}
+  primary: {fileID: 0}
+  secondary: {fileID: 0}
+  primarySlot: {fileID: 0}
+  secondarySlot: {fileID: 0}
+  equipSlot: {fileID: 0}
 --- !u!1001 &1622275647666906907
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -64,7 +68,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 3abc5ab371e50a74f9687c6202d1a79a, type: 2}
+      objectReference: {fileID: 9100000, guid: 9a3808607c721c24487da7de085cbd8d, type: 2}
     - target: {fileID: 6252356961376966267, guid: 2db03e7c8a8135146b280e5da7e0289c,
         type: 3}
       propertyPath: m_RootOrder
