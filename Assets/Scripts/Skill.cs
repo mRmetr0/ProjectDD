@@ -62,8 +62,10 @@ public class Skill : ScriptableObject
     
     private void SetDescription()
     {
-        description = type.ToString() + "\n";
-        string m = "Usable: ";
+        description = type.ToString();
+        if (values.x == values.y) description += $", {values.x}\n";
+        else description += $", {values.x}-{values.y}\n";
+            string m = "Usable: ";
         for (int i = positionsToUse.Length-1; i >= 0; i--)
         {
             m += positionsToUse[i] ? "0 " : "- ";
@@ -102,10 +104,10 @@ public class Skill : ScriptableObject
     {
         switch (selectType)
         {
-            case (Selection.Select):
             case(Selection.Cleave):
                 HitCleave(pOpponent);
                 break;
+            case (Selection.Select):
             case(Selection.Random):
                 HitRandom(pOpponent);
                 break;
@@ -140,7 +142,7 @@ public class Skill : ScriptableObject
             if (positionsToHit[opponents[i].Position])
                 hitable.Add(opponents[i]);
         }
-        if (opponents.Length == 0) return;
+        if (hitable.Count == 0) return;
         Entity opponent = hitable[rand.Next(0, hitable.Count)];
         opponent.TakeDamage(CalcDamage(), moveEnemy);
         BattleManager.CurrentPlayer.Animate(type);

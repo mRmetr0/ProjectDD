@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0fb6263d2a3e04844abe804612462306, type: 3}
-  m_Name: Move_Forward
+  m_Name: Wild_Swing
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 69013469c965f6e43aea4b554738d517, type: 3}
-  values: {x: 0, y: 0}
-  positionsToUse: 00010101
-  positionsToHit: 00000000
+  sprite: {fileID: 21300000, guid: 4bfbb94cd48a00441983f4bee78c3b56, type: 3}
+  values: {x: 4, y: 10}
+  positionsToUse: 01000000
+  positionsToHit: 01010100
   usable: 0
-  type: 2
-  selectType: 0
-  movePlayer: 1
-  moveEnemy: 0
-  description: "Support, 0\nUsable: 0 0 0 - \nHit in: - - - - \nForward 1 "
+  type: 0
+  selectType: 2
+  movePlayer: 0
+  moveEnemy: -1
+  description: "Melee\nUsable: - - - 0 \nHit in: 0 0 0 - \nPush 1 "

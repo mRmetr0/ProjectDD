@@ -41,6 +41,7 @@ public class Entity : MonoBehaviour
     private void Die()
     {
         Animator.SetTrigger("Die");
+        BattleManager.Instance.RemoveCharacter(this);
     }
 
     public void TurnStart()

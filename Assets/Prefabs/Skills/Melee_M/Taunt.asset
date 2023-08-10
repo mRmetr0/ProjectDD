@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0fb6263d2a3e04844abe804612462306, type: 3}
-  m_Name: Move_Forward
+  m_Name: Taunt
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 69013469c965f6e43aea4b554738d517, type: 3}
+  sprite: {fileID: 21300000, guid: f9dd209688d840e499921819477ea7b1, type: 3}
   values: {x: 0, y: 0}
-  positionsToUse: 00010101
-  positionsToHit: 00000000
+  positionsToUse: 01010101
+  positionsToHit: 01010101
   usable: 0
-  type: 2
-  selectType: 0
+  type: 1
+  selectType: 2
   movePlayer: 1
-  moveEnemy: 0
-  description: "Support, 0\nUsable: 0 0 0 - \nHit in: - - - - \nForward 1 "
+  moveEnemy: 1
+  description: "Ranged\nUsable: 0 0 0 0 \nHit in: 0 0 0 0 \nForward 1 Pull 1 "

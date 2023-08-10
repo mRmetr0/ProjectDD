@@ -99,4 +99,9 @@ public class BattleManager : MonoBehaviour
 
         CurrentPlayer.TurnStart();
     }
+
+    public void RemoveCharacter(Entity pEntity)
+    {
+        _turnOrder.Remove(pEntity);
+    }
 }
