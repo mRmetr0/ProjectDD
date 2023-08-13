@@ -53,6 +53,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   healthBar: {fileID: 6263507557811675440}
+  weapon: {fileID: 0}
+  weaponSlot: {fileID: 0}
 --- !u!1001 &1622275647666906907
 PrefabInstance:
   m_ObjectHideFlags: 0

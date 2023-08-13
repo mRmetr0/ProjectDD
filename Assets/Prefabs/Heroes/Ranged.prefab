@@ -53,6 +53,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 337af391f3cfd1e4abd46b4f9afd6812, type: 2}
   - {fileID: 0}
   healthBar: {fileID: 6013250941853211019}
+  weapon: {fileID: 0}
+  weaponSlot: {fileID: 0}
 --- !u!1001 &2569929580000642630
 PrefabInstance:
   m_ObjectHideFlags: 0

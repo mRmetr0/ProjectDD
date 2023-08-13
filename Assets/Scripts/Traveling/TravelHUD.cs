@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using Events;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -25,6 +26,7 @@ public class TravelHUD : MonoBehaviour
     [Header("HUD")] 
     [SerializeField] private GameObject travelView;
     [SerializeField] private GameObject eventView;
+    [SerializeField] private Slider infestationSlider;
     [SerializeField] private Button acceptButton, declineButton;
     
     private Camera _cam;
@@ -44,6 +46,23 @@ public class TravelHUD : MonoBehaviour
         declineButton.onClick.AddListener(DeclineEvent);
     }
 
+    private void OnEnable()
+    {
+        EventBus<OnShowEvent>.Subscribe(ShowEvent);
+    }
+    private void OnDisable()
+    {
+        EventBus<OnShowEvent>.Unsubscribe(ShowEvent);
+    }
+
+    private void ShowEvent(OnShowEvent pEvent)
+    {
+        SwitchHud(View.Null);
+        infestationSlider.value = pEvent.Data.infestation;
+        StartCoroutine(MoveCamEvent(pEvent.CamPos));
+    }
+
+    //These are more so tools for the methods above:
     public void SwitchHud(View view)
     {
         travelView.SetActive(view == View.Travel);

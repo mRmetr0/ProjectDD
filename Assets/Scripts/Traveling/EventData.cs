@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 public class EventData : MonoBehaviour
 {
     [SerializeField] private MonoBehaviour[] rewards;
-    [SerializeField] [Range(0, 4)] int infestation;
+    [Range(0, 4)] public int infestation;
     public float appearanceOdds;
     [SerializeField] private GameObject[] zombies;
     
