@@ -10,16 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0fb6263d2a3e04844abe804612462306, type: 3}
-  m_Name: Wild_Swing
+  m_Name: Gas_Grenade
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 4bfbb94cd48a00441983f4bee78c3b56, type: 3}
-  values: {x: 4, y: 10}
-  positionsToUse: 01000000
-  positionsToHit: 01010100
+  sprite: {fileID: 21300000, guid: b960fc8bb25ac2a4489f9ea0a9ea7ae9, type: 3}
+  values: {x: 1, y: 2}
+  positionsToUse: 00000101
+  positionsToHit: 01010101
   usable: 1
-  type: 0
-  selectType: 2
+  type: 1
+  selectType: 1
   movePlayer: 0
-  moveEnemy: -1
-  bleeds: 0
-  description: "Melee, 4-10\nUsable: - - - 0 \nHit in: 0 0 0 - \nPush 1 "
+  moveEnemy: 0
+  bleeds: 1
+  stuns: 0
+  description: "Ranged, 1-2\nUsable: 0 0 - - \nHit in: 0 0 0 0 \n\nBleeds "

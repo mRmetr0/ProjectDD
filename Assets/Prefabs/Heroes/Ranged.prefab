@@ -50,13 +50,13 @@ MonoBehaviour:
   speed: 2
   skills:
   - {fileID: 11400000, guid: c6562f30f210fe741890c5d7e41fd3c6, type: 2}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 1c412c8f902c41b4eaad08f41aee0212, type: 2}
   - {fileID: 11400000, guid: 33d34080cad941441b615594b57b14d0, type: 2}
   healthBar: {fileID: 6013250941853211019}
   playerPortrait: {fileID: 21300000, guid: 56bfa4450af8d4440a96122dc75172d0, type: 3}
   weapon: {fileID: 1896006595616492748, guid: 14351f4f446dd314690b63164d49ec9e, type: 3}
   weaponSlot: {fileID: 7668938569948049568}
-  meleeBaseAnimation: 0
+  meleeBaseAnimation: 1
 --- !u!1001 &2569929580000642630
 PrefabInstance:
   m_ObjectHideFlags: 0

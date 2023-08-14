@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
@@ -40,6 +41,8 @@ public class Skill : ScriptableObject
     public int movePlayer;
     public int moveEnemy;
     public bool bleeds;
+    public bool stuns;
+    public bool dodges;
     public string description;
     private System.Random rand = new ();
 
@@ -82,6 +85,9 @@ public class Skill : ScriptableObject
         if (movePlayer < 0) description += "Back " + Mathf.Abs(movePlayer)+ " ";
         if (moveEnemy > 0) description += "Pull " + moveEnemy+ " ";
         if (moveEnemy < 0) description += "Push " + Mathf.Abs(moveEnemy)+ " ";
+        description += "\n";
+        if (bleeds) description += "Bleeds ";
+        if (stuns) description += "Stuns ";
     }
     
     public bool InPos(int posUser)
@@ -100,53 +106,50 @@ public class Skill : ScriptableObject
         }
         return false;
     }
-
+    
     public void Use(ToCheck pOpponent)
     {
-        switch (selectType)
+        Entity[] toHit = GetToHit(pOpponent);
+        for (int i = 0; i < toHit.Length; i++) 
         {
-            case(Selection.Cleave):
-                HitCleave(pOpponent);
-                break;
-            case (Selection.Select):
-            case(Selection.Random):
-                HitRandom(pOpponent);
-                break;
+            Entity e = toHit[i];
+            e.TakeDamage(CalcDamage(), moveEnemy);
+            if (bleeds) e.GiveMod(Entity.Modifier.Bleed);
+            if (stuns) e.GiveMod(Entity.Modifier.Stun);
         }
+        if (dodges) BattleManager.CurrentPlayer.GiveMod(Entity.Modifier.Dodge);
+        BattleManager.CurrentPlayer.Animate(type);
         BattleManager.CurrentPlayer.Move(movePlayer);
     }
 
-    private void HitSelect(ToCheck pOpponent)
+    private Entity[] GetToHit(ToCheck pOpponent)
     {
-    }
-
-    private void HitCleave(ToCheck pOpponent)
-    {
-        Entity[] opponents =
+        List<Entity> toHit = new List<Entity>();
+        Entity[] opponents = 
             pOpponent == ToCheck.Heroes ? BattleManager.Instance.Heroes : BattleManager.Instance.Enemies;
-        for (int i = 0; i < opponents.Length; i++)
+        switch (selectType)
         {
-            Entity opponent = opponents[i];
-            if (!positionsToHit[opponent.Position]) continue;
-            opponent.TakeDamage(CalcDamage(), moveEnemy);
-            BattleManager.CurrentPlayer.Animate(type);
+            case(Selection.Cleave):
+                for (int i = 0; i < opponents.Length; i++)
+                {
+                    Entity opponent = opponents[i];
+                    if (!positionsToHit[opponent.Position]) continue;
+                    toHit.Add(opponent);
+                }
+                break;
+            case (Selection.Select):
+            case(Selection.Random):
+                List<Entity> hitable = new List<Entity>();
+                for (int i = 0; i < opponents.Length; i++)
+                {
+                    if (positionsToHit[opponents[i].Position])
+                        hitable.Add(opponents[i]);
+                }
+                if (hitable.Count == 0) break;
+                toHit.Add(hitable[rand.Next(0, hitable.Count)]);
+                break;
         }
-    }
-
-    private void HitRandom(ToCheck pOpponent)
-    {
-        Entity[] opponents =
-            pOpponent == ToCheck.Heroes ? BattleManager.Instance.Heroes : BattleManager.Instance.Enemies;
-        List<Entity> hitable = new List<Entity>();
-        for (int i = 0; i < opponents.Length; i++)
-        {
-            if (positionsToHit[opponents[i].Position])
-                hitable.Add(opponents[i]);
-        }
-        if (hitable.Count == 0) return;
-        Entity opponent = hitable[rand.Next(0, hitable.Count)];
-        opponent.TakeDamage(CalcDamage(), moveEnemy);
-        BattleManager.CurrentPlayer.Animate(type);
+        return toHit.ToArray();
     }
 
     private int CalcDamage()

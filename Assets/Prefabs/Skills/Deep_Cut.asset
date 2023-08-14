@@ -21,4 +21,5 @@ MonoBehaviour:
   selectType: 0
   movePlayer: 1
   moveEnemy: 0
-  description: "Melee\nUsable: 0 0 0 0 \nHit in: 0 0 0 - \nForward 1 "
+  bleeds: 1
+  description: "Melee, 2-5\nUsable: 0 0 0 0 \nHit in: 0 0 0 - \nForward 1 "

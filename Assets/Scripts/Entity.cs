@@ -4,13 +4,15 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 public class Entity : MonoBehaviour
 {
     public enum Modifier
     {
         Bleed,
-        
+        Stun,
+        Dodge
     }
 
     [SerializeField] protected int maxHealth;
@@ -26,6 +28,8 @@ public class Entity : MonoBehaviour
 
     private int bleedDamage = 3;
     private int bleedAmount = 0;
+    private int dodge = 0;
+    private bool stunned = false;
     
     protected virtual void Awake()
     {
@@ -35,6 +39,11 @@ public class Entity : MonoBehaviour
 
     public void TakeDamage(int pDamage, int pMove = 0)
     {
+        if (dodge > 0)
+        {
+            dodge--;
+            return;
+        }
         Health -= pDamage;
         Move(pMove);
         healthBar.UpdateUI(Health, maxHealth);
@@ -52,6 +61,15 @@ public class Entity : MonoBehaviour
         {
             case(Modifier.Bleed):
                 bleedAmount += 3;
+                break;
+            case(Modifier.Stun):
+                int r = Random.Range(0, 100);
+                Debug.Log($"StunChance: {r}");
+                if (r > 50)
+                    stunned = true;
+                break;
+            case (Modifier.Dodge):
+                dodge++;
                 break;
         }
     }
@@ -73,8 +91,15 @@ public class Entity : MonoBehaviour
 
     public void TurnStart()
     {
-        CheckMods();
         healthBar.SetBarActive(true);
+        CheckMods();
+        if (Health <= 0 || stunned)
+        {
+            stunned = false;
+            StartCoroutine(TurnEnd());
+            return;
+        }
+        Debug.Log("Health == "+Health);
         ActTurn();
     }
 
