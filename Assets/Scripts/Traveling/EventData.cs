@@ -1,16 +1,17 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Events;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class EventData : MonoBehaviour
 {
-    [SerializeField] private MonoBehaviour[] rewards;
+    public MonoBehaviour[] rewards;
     [Range(0, 4)] public int infestation;
     public float appearanceOdds;
     [SerializeField] private GameObject[] zombies;
-    
+
 
     public void Initialize()
     {
@@ -20,22 +21,20 @@ public class EventData : MonoBehaviour
         }
     }
 
-    public void AcceptEvent()
-    {
-        if (infestation == 0)
-        {
-            GiveReward();
-            return;
-        }
-    }
-
-    public void GiveReward()
+    public void GiveRewards()
     {
         foreach (MonoBehaviour obj in rewards)
         {
-            if (obj is Car)
+            switch (obj)
             {
-                BackgroundManager.Instance.ReplaceCar(obj as Car);
+                case (Car):
+                    Debug.Log("JUP THATS A CAR :)");
+                    EventBus<OnRewardCar>.Publish(new OnRewardCar(obj as Car));
+                    break;
+                case (Hero):
+                    Debug.Log("THATS A STRAIGTUP HUMAN BEING");
+                    TravelHUD.Instance.Party.AddHero(obj as Hero);
+                    break;
             }
         }
         TravelHUD.Instance.MoveCamTravel();

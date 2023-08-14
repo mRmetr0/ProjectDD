@@ -41,6 +41,16 @@ public class BackgroundManager : MonoBehaviour
         slider.maxValue = car.SpeedLevels.Length-1;
     }
 
+    private void OnEnable()
+    {
+        EventBus<OnRewardCar>.Subscribe(ReplaceCar);
+    }
+
+    private void OnDisable()
+    {
+        EventBus<OnRewardCar>.Unsubscribe(ReplaceCar);
+    }
+
     private void Update()
     {
         MoveRoad();
@@ -58,12 +68,6 @@ public class BackgroundManager : MonoBehaviour
         tilesTraveled++;
     }
 
-    public void ReplaceCar(Car pCar)
-    {
-        Destroy(car.gameObject);
-        car = Instantiate(pCar.gameObject, Vector3.zero, quaternion.identity).GetComponent<Car>();
-        slider.maxValue = car.SpeedLevels.Length-1;
-    }
 
     private void MoveRoad()
     {
@@ -103,5 +107,17 @@ public class BackgroundManager : MonoBehaviour
         EventBus<OnShowEvent>.Publish(new OnShowEvent(EventTile));
         slider.value = 0;
         distToEvent = 0;
+    }
+    public void ReplaceCar(Car pCar)
+    {
+        Destroy(car.gameObject);
+        car = Instantiate(pCar.gameObject, Vector3.zero, quaternion.identity).GetComponent<Car>();
+        slider.maxValue = car.SpeedLevels.Length-1;
+    }
+    public void ReplaceCar(OnRewardCar pEvent)
+    {
+        Destroy(car.gameObject);
+        car = Instantiate(pEvent.Car.gameObject, Vector3.zero, quaternion.identity).GetComponent<Car>();
+        slider.maxValue = car.SpeedLevels.Length-1;
     }
 }

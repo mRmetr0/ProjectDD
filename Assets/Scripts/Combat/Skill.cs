@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
-[CreateAssetMenu(fileName = "Skill", menuName = "ScriptableObjects/Skill", order = 0)]
+[CreateAssetMenu(fileName = "Skill", menuName = "ScriptableObjects/Skill")]
 public class Skill : ScriptableObject
 {
     public enum ToCheck
@@ -39,8 +39,9 @@ public class Skill : ScriptableObject
     public Selection selectType;
     public int movePlayer;
     public int moveEnemy;
+    public bool bleeds;
     public string description;
-    private System.Random rand = new System.Random();
+    private System.Random rand = new ();
 
     private void OnValidate()
     {

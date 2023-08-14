@@ -56,7 +56,7 @@ MonoBehaviour:
   rewards:
   - {fileID: 6152889599364023327, guid: 93f58cf1a816df3459091ae843f994e4, type: 3}
   infestation: 2
-  appearanceOdds: 0
+  appearanceOdds: 50
   zombies:
   - {fileID: 6035035138634158476}
   - {fileID: 7346132632309841101}

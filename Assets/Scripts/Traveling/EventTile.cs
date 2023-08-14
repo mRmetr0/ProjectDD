@@ -27,7 +27,7 @@ public class EventTile : RoadTile
             allOdds += data.appearanceOdds;
         }
 
-        float n = Random.RandomRange(0, allOdds);
+        float n = Random.Range(0, allOdds);
         foreach (EventData data in events)
         {
             if (data.appearanceOdds > n)

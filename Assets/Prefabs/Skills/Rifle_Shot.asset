@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fb6263d2a3e04844abe804612462306, type: 3}
+  m_Name: Rifle_Shot
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 21300000, guid: 3eb97ca192211d0438639f407fe13ec2, type: 3}
+  values: {x: 3, y: 5}
+  positionsToUse: 00000101
+  positionsToHit: 00000101
+  usable: 1
+  type: 1
+  selectType: 0
+  movePlayer: 0
+  moveEnemy: 0
+  description: "Ranged, 3-5\nUsable: 0 0 - - \nHit in: - - 0 0 \n"

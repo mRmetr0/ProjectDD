@@ -5,22 +5,30 @@ using System.Linq;
 using System.Security.Cryptography;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
+using UnityEngine.UI;
 using Random = System.Random;
 
 public class Hero : Entity
 {
+    [SerializeField] private Sprite playerPortrait;
     [SerializeField] private Weapon weapon;
     [SerializeField] private Transform weaponSlot;
-    private int _stress;
+    [SerializeField] private bool meleeBaseAnimation;
+    //private int _stress;
+
+    public Sprite Portrait => playerPortrait;
 
     protected override void Awake()
     {
         base.Awake();
+        Animator.SetBool("IsRanged", !meleeBaseAnimation);
+
+        if (weapon == null) return;
         Animator.SetBool("IsRanged", weapon.type == Weapon.Type.Ranged);
         weapon = Instantiate(weapon, weaponSlot);
-
         List<Skill> list = skills.ToList(); 
-        if (weapon != null) list.Add(weapon.skill);
+        list.Add(weapon.skill);
         skills = list.ToArray();
     }
 
@@ -39,8 +47,7 @@ public class Hero : Entity
             Health = Mathf.Max(maxHealth, Health += healthBoost);
         }
 
-        _stress = 0;
-        //TODO: GET QUIRK BASED ON RESOLVE
+        //_stress = 0;
     }
 
     public override void ActTurn()

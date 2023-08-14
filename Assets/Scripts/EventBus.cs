@@ -35,4 +35,13 @@ namespace Events
             Data = pEventTile.eventData;
         }
     }
+    public sealed class OnRewardCar : UnityEvent
+    {
+        public Car Car;
+
+        public OnRewardCar(Car pCar)
+        {
+            Car = pCar;
+        }
+    }
 }

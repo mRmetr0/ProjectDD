@@ -639,6 +639,8 @@ MonoBehaviour:
   camPos: {fileID: 8781898829389257713}
   events:
   - {fileID: 122081928598672468, guid: a7f25e853ac68ea45892b8816eaf0b36, type: 3}
+  - {fileID: 122081928598672468, guid: cc50bd341a32a7e4796fd08ff5b855d1, type: 3}
+  - {fileID: 122081928598672468, guid: 48ff1d5cc2f9422489612633f7a91c38, type: 3}
   eventData: {fileID: 0}
 --- !u!1 &8605092534224359562
 GameObject:

@@ -5,6 +5,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.UIElements;
 using Button = UnityEngine.UI.Button;
@@ -12,13 +13,24 @@ using Image = UnityEngine.UI.Image;
 
 public class HUDManager : MonoBehaviour
 {
+    public enum UIType
+    {
+        Combat,
+        Win,
+        Lose,
+        None
+    }
+
     public static HUDManager Instance;
     
     [SerializeField] private Button[] buttons;
     [SerializeField] private TMP_Text title, description;
+    [SerializeField] private GameObject combatUI;
+    [SerializeField] private GameObject winUI;
+    [SerializeField] private GameObject loseUI;
+    
     private SkillButton[] _skillButtons;
     private Skill _toUse;
-    private Canvas _canvas;
 
     private void Awake()
     {
@@ -45,12 +57,13 @@ public class HUDManager : MonoBehaviour
                 Debug.Log($"failed :(, Exception: {e}");
             }
         }
-
-        _canvas = GetComponent<Canvas>();
-        _canvas.enabled = false;
+        
         SetText();
+        SwitchUI(UIType.None);
+        winUI.GetComponentInChildren<Button>().onClick.AddListener(WinButton);
+        loseUI.GetComponentInChildren<Button>().onClick.AddListener(LoseButton);
     }
-
+    
     public void SetSkillButtons(Skill[] pSkills)
     {
         for (int i = 0; i < _skillButtons.Length; i++)
@@ -63,15 +76,14 @@ public class HUDManager : MonoBehaviour
 
             _skillButtons[i].Assign(pSkills[i]);
         }
-
-        _canvas.enabled = true;
+        SwitchUI(UIType.Combat);
     }
 
     public void OnSkillActivate(Skill pSkill)
     {
         //For now, just use the skill, even if it's useless:
         pSkill.Use( Skill.ToCheck.Enemies);
-        _canvas.enabled = false;
+        SwitchUI(UIType.None);
         StartCoroutine(BattleManager.CurrentPlayer.TurnEnd());
     }
     public void SetText(string pTitle = "", string pDesc = "")
@@ -80,6 +92,24 @@ public class HUDManager : MonoBehaviour
         pDesc = pDesc.Replace("_", " ");
         title.text = pTitle;
         description.text = pDesc;
+        title.ForceMeshUpdate(true);
+    }
+
+    public void SwitchUI(UIType type)
+    {
+        combatUI.gameObject.SetActive(type == UIType.Combat);
+        winUI.gameObject.SetActive(type == UIType.Win);
+        loseUI.gameObject.SetActive(type == UIType.Lose);
+    }
+
+    public void WinButton()
+    {
+        SceneManager.LoadScene("TravelScene");
+    }
+
+    public void LoseButton()
+    {
+        Application.Quit();
     }
 }
 

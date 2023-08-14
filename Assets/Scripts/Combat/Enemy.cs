@@ -35,7 +35,7 @@ public class Enemy : Entity
 
         if (usable.Count == 0) return null;
 
-        Random r = new System.Random();
+        Random r = new Random();
         int n = r.Next(0, usable.Count - 1);
         return skills[n];
     }

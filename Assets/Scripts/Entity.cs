@@ -7,6 +7,12 @@ using UnityEngine.Serialization;
 
 public class Entity : MonoBehaviour
 {
+    public enum Modifier
+    {
+        Bleed,
+        
+    }
+
     [SerializeField] protected int maxHealth;
     [SerializeField] protected int speed;
     [SerializeField] protected Skill[] skills;
@@ -18,6 +24,9 @@ public class Entity : MonoBehaviour
     public int Speed => speed;
     public int hp => Health;
 
+    private int bleedDamage = 3;
+    private int bleedAmount = 0;
+    
     protected virtual void Awake()
     {
         Health = maxHealth;
@@ -35,7 +44,25 @@ public class Entity : MonoBehaviour
             return;
         }
         Animator.SetTrigger("Damaged");
+    }
 
+    public void GiveMod(Modifier pMod)
+    {
+        switch (pMod)
+        {
+            case(Modifier.Bleed):
+                bleedAmount += 3;
+                break;
+        }
+    }
+
+    private void CheckMods()
+    {
+        if (bleedAmount > 0)
+        {
+            TakeDamage(bleedDamage);
+            bleedAmount--;
+        }
     }
 
     private void Die()
@@ -46,6 +73,7 @@ public class Entity : MonoBehaviour
 
     public void TurnStart()
     {
+        CheckMods();
         healthBar.SetBarActive(true);
         ActTurn();
     }
