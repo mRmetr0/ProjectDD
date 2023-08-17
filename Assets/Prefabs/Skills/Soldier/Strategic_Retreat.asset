@@ -21,4 +21,7 @@ MonoBehaviour:
   selectType: 0
   movePlayer: -1
   moveEnemy: 0
-  description: "Support, 0\nUsable: 0 0 0 0 \nHit in: - - - - \nBack 1 "
+  bleeds: 0
+  stuns: 0
+  dodges: 1
+  description: "Support, 0\nUsable: 0 0 0 0 \nHit in: - - - - \nBack 1 \n"

@@ -21,4 +21,8 @@ MonoBehaviour:
   selectType: 2
   movePlayer: -1
   moveEnemy: 1
-  description: "Ranged\nUsable: - - 0 0 \nHit in: 0 0 0 0 \nBack 1 Pull 1 "
+  bleeds: 0
+  stuns: 0
+  dodges: 0
+  marks: 1
+  description: "Ranged, 0\nUsable: - - 0 0 \nHit in: 0 0 0 0 \nBack 1 Pull 1 \n"

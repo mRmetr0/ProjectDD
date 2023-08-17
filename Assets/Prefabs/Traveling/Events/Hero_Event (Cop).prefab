@@ -55,7 +55,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rewards:
   - {fileID: 7668938570125791231, guid: 3ed654fb339d5e64db397b197a7a57ce, type: 3}
-  infestation: 1
+  infestation: 2
   appearanceOdds: 50
   zombies:
   - {fileID: 6035035138634158476}
@@ -580,7 +580,7 @@ PrefabInstance:
     - target: {fileID: 856601670117699726, guid: b14953694d54eea4eb66f453e525024c,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 856601670124978856, guid: b14953694d54eea4eb66f453e525024c,
         type: 3}
@@ -762,7 +762,7 @@ PrefabInstance:
     - target: {fileID: 856601670117699726, guid: b14953694d54eea4eb66f453e525024c,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 856601670124978856, guid: b14953694d54eea4eb66f453e525024c,
         type: 3}

@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4d2bfb228f321f4fac0ed9ee660c087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 4
+  maxHealth: 14
   speed: 2
   skills:
   - {fileID: 11400000, guid: 33bd36de4716d6443aee8fc5d434255d, type: 2}

@@ -43,6 +43,8 @@ public class Skill : ScriptableObject
     public bool bleeds;
     public bool stuns;
     public bool dodges;
+    public bool marks;
+    public bool marksSelf;
     public string description;
     private System.Random rand = new ();
 
@@ -116,8 +118,10 @@ public class Skill : ScriptableObject
             e.TakeDamage(CalcDamage(), moveEnemy);
             if (bleeds) e.GiveMod(Entity.Modifier.Bleed);
             if (stuns) e.GiveMod(Entity.Modifier.Stun);
+            if (marks) e.GiveMod(Entity.Modifier.Marks);
         }
         if (dodges) BattleManager.CurrentPlayer.GiveMod(Entity.Modifier.Dodge);
+        if (marksSelf) BattleManager.CurrentPlayer.GiveMod(Entity.Modifier.Marks);
         BattleManager.CurrentPlayer.Animate(type);
         BattleManager.CurrentPlayer.Move(movePlayer);
     }

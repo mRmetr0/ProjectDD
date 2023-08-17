@@ -50,7 +50,7 @@ MonoBehaviour:
   speed: 2
   skills:
   - {fileID: 11400000, guid: 74639d9145cf75f419b18f9df7f3cbea, type: 2}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 953d698b529e9ab42af8c5b63e46db96, type: 2}
   - {fileID: 11400000, guid: 8f7a26c2447a7bc409cf7e507ab19ee9, type: 2}
   healthBar: {fileID: 6013250941853211019}
   playerPortrait: {fileID: 21300000, guid: 4175ec3b930640e4387ab162cf3f72c9, type: 3}

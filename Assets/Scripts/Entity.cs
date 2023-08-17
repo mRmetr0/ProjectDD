@@ -12,7 +12,8 @@ public class Entity : MonoBehaviour
     {
         Bleed,
         Stun,
-        Dodge
+        Dodge,
+        Marks
     }
 
     [SerializeField] protected int maxHealth;
@@ -30,29 +31,33 @@ public class Entity : MonoBehaviour
     private int bleedAmount = 0;
     private int dodge = 0;
     private bool stunned = false;
+    private int marked = 0;
     
     protected virtual void Awake()
     {
         Health = maxHealth;
         Animator = GetComponentInChildren<Animator>();
+        healthBar.UpdateUI(Health, maxHealth, bleedAmount>0, dodge>0, stunned, marked > 0);
     }
 
     public void TakeDamage(int pDamage, int pMove = 0)
     {
+        Debug.Log($"Dodge: {dodge}");
         if (dodge > 0)
         {
             dodge--;
-            return;
         }
-        Health -= pDamage;
-        Move(pMove);
-        healthBar.UpdateUI(Health, maxHealth);
-        if (Health <= 0)
+        else
         {
-            Die();
-            return;
+            if (marked > 0) pDamage = Mathf.CeilToInt(pDamage * 1.5f);
+            Health -= pDamage;
+            Move(pMove);
+            if (Health <= 0)
+                Die();
+            else
+                Animator.SetTrigger("Damaged");
         }
-        Animator.SetTrigger("Damaged");
+        healthBar.UpdateUI(Health, maxHealth, bleedAmount>0, dodge>0, stunned, marked > 0);
     }
 
     public void GiveMod(Modifier pMod)
@@ -71,16 +76,22 @@ public class Entity : MonoBehaviour
             case (Modifier.Dodge):
                 dodge++;
                 break;
+            case (Modifier.Marks):
+                marked += 3;
+                break;
         }
+        healthBar.UpdateUI(Health, maxHealth, bleedAmount>0, dodge>0, stunned, marked > 0);
     }
 
     private void CheckMods()
     {
+        marked = Mathf.Max(marked-1, 0);
         if (bleedAmount > 0)
         {
             TakeDamage(bleedDamage);
             bleedAmount--;
         }
+        healthBar.UpdateUI(Health, maxHealth, bleedAmount>0, dodge>0, stunned, marked > 0);
     }
 
     private void Die()
@@ -99,7 +110,6 @@ public class Entity : MonoBehaviour
             StartCoroutine(TurnEnd());
             return;
         }
-        Debug.Log("Health == "+Health);
         ActTurn();
     }
 
@@ -107,9 +117,10 @@ public class Entity : MonoBehaviour
 
     public IEnumerator TurnEnd()
     {
+        healthBar.UpdateUI(Health, maxHealth, bleedAmount>0, dodge>0, stunned, marked > 0);
+        HUDManager.Instance.SetText();
         yield return new WaitForSeconds(1);
         healthBar.SetBarActive(false);
-        HUDManager.Instance.SetText();
         BattleManager.Instance.NextTurn();
     }
 

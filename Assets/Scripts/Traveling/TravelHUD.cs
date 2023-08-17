@@ -130,7 +130,7 @@ public class TravelHUD : MonoBehaviour
                 playerDisplay[i].gameObject.SetActive(false);
                 continue;
             }
-            playerDisplay[i].gameObject.GetComponent<Image>().sprite = party.heroes[i].Portrait; //TODO: make this work
+            playerDisplay[i].gameObject.GetComponent<Image>().sprite = party.heroes[i].Portrait; 
         }
     }
 

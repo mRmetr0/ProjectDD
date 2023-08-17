@@ -55,8 +55,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rewards:
   - {fileID: 7668938570125791231, guid: f713fe9bec1eabe46aac5e1a8ef56a57, type: 3}
-  infestation: 1
-  appearanceOdds: 50
+  infestation: 3
+  appearanceOdds: 20
   zombies:
   - {fileID: 6035035138634158476}
   - {fileID: 7346132632309841101}
@@ -227,7 +227,7 @@ PrefabInstance:
     - target: {fileID: 856601670117699726, guid: b14953694d54eea4eb66f453e525024c,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 856601670124978856, guid: b14953694d54eea4eb66f453e525024c,
         type: 3}
@@ -409,7 +409,7 @@ PrefabInstance:
     - target: {fileID: 856601670117699726, guid: b14953694d54eea4eb66f453e525024c,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 856601670124978856, guid: b14953694d54eea4eb66f453e525024c,
         type: 3}
@@ -500,7 +500,7 @@ PrefabInstance:
     - target: {fileID: 856601670117699726, guid: b14953694d54eea4eb66f453e525024c,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 856601670124978856, guid: b14953694d54eea4eb66f453e525024c,
         type: 3}
@@ -682,7 +682,7 @@ PrefabInstance:
     - target: {fileID: 856601670117699726, guid: b14953694d54eea4eb66f453e525024c,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 856601670124978856, guid: b14953694d54eea4eb66f453e525024c,
         type: 3}
