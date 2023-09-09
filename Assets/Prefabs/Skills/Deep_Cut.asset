@@ -9,17 +9,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fb6263d2a3e04844abe804612462306, type: 3}
+  m_Script: {fileID: 11500000, guid: 7103b579868f65547be60e014a1a34e2, type: 3}
   m_Name: Deep_Cut
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 0d95f57250a09964e885ff0dc3da628d, type: 3}
-  values: {x: 2, y: 5}
+  values: {x: 3, y: 4}
   positionsToUse: 01010101
-  positionsToHit: 01010100
+  positionsToHit: 01010101
   usable: 1
   type: 0
   selectType: 0
   movePlayer: 1
   moveEnemy: 0
   bleeds: 1
-  description: "Melee, 2-5\nUsable: 0 0 0 0 \nHit in: 0 0 0 - \nForward 1 "
+  stuns: 0
+  dodges: 0
+  marks: 0
+  marksSelf: 0

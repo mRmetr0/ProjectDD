@@ -8,7 +8,6 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
-[CreateAssetMenu(fileName = "Skill", menuName = "ScriptableObjects/Skill")]
 public class Skill : ScriptableObject
 {
     public enum ToCheck
@@ -35,17 +34,16 @@ public class Skill : ScriptableObject
     public Vector2Int values;
     public bool[] positionsToUse = {false, false,false,false};
     public bool[] positionsToHit = {false, false,false,false};
-    public bool usable;
     public Type type;
     public Selection selectType;
     public int movePlayer;
     public int moveEnemy;
-    public bool bleeds;
-    public bool stuns;
+    [Header("Effects To Self")]
     public bool dodges;
-    public bool marks;
     public bool marksSelf;
-    public string description;
+
+    [NonSerialized]public bool usable;
+    [NonSerialized] public string description;
     private System.Random rand = new ();
 
     private void OnValidate()
@@ -87,9 +85,9 @@ public class Skill : ScriptableObject
         if (movePlayer < 0) description += "Back " + Mathf.Abs(movePlayer)+ " ";
         if (moveEnemy > 0) description += "Pull " + moveEnemy+ " ";
         if (moveEnemy < 0) description += "Push " + Mathf.Abs(moveEnemy)+ " ";
-        description += "\n";
-        if (bleeds) description += "Bleeds ";
-        if (stuns) description += "Stuns ";
+        // description += "\n";
+        // if (bleeds) description += "Bleeds ";
+        // if (stuns) description += "Stuns ";
     }
     
     public bool InPos(int posUser)
@@ -108,25 +106,60 @@ public class Skill : ScriptableObject
         }
         return false;
     }
-    
-    public void Use(ToCheck pOpponent)
+
+    public virtual void Use()
     {
-        Entity[] toHit = GetToHit(pOpponent);
-        for (int i = 0; i < toHit.Length; i++) 
-        {
-            Entity e = toHit[i];
-            e.TakeDamage(CalcDamage(), moveEnemy);
-            if (bleeds) e.GiveMod(Entity.Modifier.Bleed);
-            if (stuns) e.GiveMod(Entity.Modifier.Stun);
-            if (marks) e.GiveMod(Entity.Modifier.Marks);
-        }
-        if (dodges) BattleManager.CurrentPlayer.GiveMod(Entity.Modifier.Dodge);
-        if (marksSelf) BattleManager.CurrentPlayer.GiveMod(Entity.Modifier.Marks);
-        BattleManager.CurrentPlayer.Animate(type);
-        BattleManager.CurrentPlayer.Move(movePlayer);
+        // ToCheck toCheck;
+        // if (heals)
+        // {
+        //     toCheck = BattleManager.Instance.Heroes.Contains(BattleManager.CurrentPlayer)
+        //         ? ToCheck.Heroes
+        //         : ToCheck.Enemies;
+        //     //Heal(toCheck);
+        //     return;
+        // } 
+        // toCheck = BattleManager.Instance.Heroes.Contains(BattleManager.CurrentPlayer)
+        //     ? ToCheck.Enemies
+        //     : ToCheck.Heroes;
+        //Attack(toCheck);
     }
 
-    private Entity[] GetToHit(ToCheck pOpponent)
+    // public void Heal(ToCheck pTartets)
+    // {
+    //     Entity[] toHit = GetToHit(pTartets);
+    //     
+    //     for (int i = 0; i < toHit.Length; i++) 
+    //     {
+    //         Entity e = toHit[i];
+    //         e.TakeHealing(CalcValue(), cleanses);
+    //     }
+    //     if (dodges) BattleManager.CurrentPlayer.GiveMod(Entity.Modifier.Dodge);
+    //     if (marksSelf) BattleManager.CurrentPlayer.GiveMod(Entity.Modifier.Marks);
+    //     BattleManager.CurrentPlayer.Animate(type);
+    //     BattleManager.CurrentPlayer.Move(movePlayer);
+    // }
+    //
+    // public void Attack(ToCheck pOpponent)
+    // {
+    //     Entity[] toHit = GetToHit(pOpponent);
+    //     
+    //     if (heals)
+    //     
+    //     for (int i = 0; i < toHit.Length; i++) 
+    //     {
+    //         Entity e = toHit[i];
+    //         e.TakeDamage(CalcValue(), moveEnemy);
+    //         if (bleeds) e.GiveMod(Entity.Modifier.Bleed);
+    //         if (stuns) e.GiveMod(Entity.Modifier.Stun);
+    //         if (marks) e.GiveMod(Entity.Modifier.Marks);
+    //     }
+    //     if (dodges) BattleManager.CurrentPlayer.GiveMod(Entity.Modifier.Dodge);
+    //     if (marksSelf) BattleManager.CurrentPlayer.GiveMod(Entity.Modifier.Marks);
+    //     BattleManager.CurrentPlayer.Animate(type);
+    //     BattleManager.CurrentPlayer.Move(movePlayer);
+    // }
+
+    protected Entity[] GetToHit(ToCheck pOpponent)
     {
         List<Entity> toHit = new List<Entity>();
         Entity[] opponents = 
@@ -156,7 +189,7 @@ public class Skill : ScriptableObject
         return toHit.ToArray();
     }
 
-    private int CalcDamage()
+    protected int CalcValue()
     {
         return rand.Next(values.x, values.y);
     }

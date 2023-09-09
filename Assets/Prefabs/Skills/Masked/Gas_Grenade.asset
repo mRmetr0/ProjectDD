@@ -9,18 +9,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fb6263d2a3e04844abe804612462306, type: 3}
+  m_Script: {fileID: 11500000, guid: 7103b579868f65547be60e014a1a34e2, type: 3}
   m_Name: Gas_Grenade
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: b960fc8bb25ac2a4489f9ea0a9ea7ae9, type: 3}
   values: {x: 1, y: 2}
   positionsToUse: 00000101
   positionsToHit: 01010101
-  usable: 1
   type: 1
   selectType: 1
   movePlayer: 0
   moveEnemy: 0
+  dodges: 0
+  marksSelf: 0
   bleeds: 1
   stuns: 0
-  description: "Ranged, 1-2\nUsable: 0 0 - - \nHit in: 0 0 0 0 \n\nBleeds "
+  marks: 0

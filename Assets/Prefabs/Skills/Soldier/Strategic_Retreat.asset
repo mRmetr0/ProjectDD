@@ -9,19 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fb6263d2a3e04844abe804612462306, type: 3}
+  m_Script: {fileID: 11500000, guid: 6866f78833b90e84c8a701bf9c2592ea, type: 3}
   m_Name: Strategic_Retreat
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 10103276ec14b2e44880936b696fc81e, type: 3}
   values: {x: 0, y: 0}
-  positionsToUse: 01010101
+  positionsToUse: 01010100
   positionsToHit: 00000000
-  usable: 1
   type: 2
   selectType: 0
   movePlayer: -1
   moveEnemy: 0
-  bleeds: 0
-  stuns: 0
   dodges: 1
-  description: "Support, 0\nUsable: 0 0 0 0 \nHit in: - - - - \nBack 1 \n"
+  marksSelf: 0
+  cleanses: 0

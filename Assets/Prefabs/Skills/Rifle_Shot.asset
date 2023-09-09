@@ -9,16 +9,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fb6263d2a3e04844abe804612462306, type: 3}
+  m_Script: {fileID: 11500000, guid: 7103b579868f65547be60e014a1a34e2, type: 3}
   m_Name: Rifle_Shot
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 3eb97ca192211d0438639f407fe13ec2, type: 3}
-  values: {x: 3, y: 5}
+  values: {x: 5, y: 6}
   positionsToUse: 00000101
   positionsToHit: 00000101
-  usable: 1
   type: 1
-  selectType: 0
+  selectType: 2
   movePlayer: 0
   moveEnemy: 0
-  description: "Ranged, 3-5\nUsable: 0 0 - - \nHit in: - - 0 0 \n"
+  bleeds: 0
+  stuns: 0
+  dodges: 0
+  marks: 0
+  marksSelf: 0

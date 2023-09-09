@@ -82,7 +82,7 @@ public class HUDManager : MonoBehaviour
     public void OnSkillActivate(Skill pSkill)
     {
         //For now, just use the skill, even if it's useless:
-        pSkill.Use( Skill.ToCheck.Enemies);
+        pSkill.Use( );
         SwitchUI(UIType.None);
         StartCoroutine(BattleManager.CurrentPlayer.TurnEnd());
     }

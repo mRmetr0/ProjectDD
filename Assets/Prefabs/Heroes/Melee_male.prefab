@@ -49,8 +49,8 @@ MonoBehaviour:
   maxHealth: 20
   speed: 5
   skills:
-  - {fileID: 11400000, guid: 0c661d2beef3d5449bcf5f6fd26bf2c9, type: 2}
-  - {fileID: 11400000, guid: de56919ccf9d1b144a54096f8cf96382, type: 2}
+  - {fileID: 11400000, guid: af248c7b2d8952c43b2c4d3447efbc55, type: 2}
+  - {fileID: 11400000, guid: 662c6bc72ceca5b4c882bfe53972ddbe, type: 2}
   healthBar: {fileID: 6263507557811675440}
   playerPortrait: {fileID: 21300000, guid: f91dba0da5d04984a9c2b4ca8840e1e9, type: 3}
   weapon: {fileID: 6967678601977394061, guid: fb2fb5cc363acea4bbe621ec1f5d068b, type: 3}

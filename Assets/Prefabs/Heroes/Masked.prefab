@@ -49,12 +49,12 @@ MonoBehaviour:
   maxHealth: 15
   speed: 2
   skills:
-  - {fileID: 11400000, guid: 74639d9145cf75f419b18f9df7f3cbea, type: 2}
-  - {fileID: 11400000, guid: 953d698b529e9ab42af8c5b63e46db96, type: 2}
-  - {fileID: 11400000, guid: 8f7a26c2447a7bc409cf7e507ab19ee9, type: 2}
+  - {fileID: 11400000, guid: faea6a463490bb34186c5839b3947d38, type: 2}
+  - {fileID: 11400000, guid: 1266b2e3266c1964291b9fc595f5e382, type: 2}
+  - {fileID: 11400000, guid: 84f444cb80292ad44a330f0ac4f9f10a, type: 2}
   healthBar: {fileID: 6013250941853211019}
   playerPortrait: {fileID: 21300000, guid: 4175ec3b930640e4387ab162cf3f72c9, type: 3}
-  weapon: {fileID: 1896006595616492748, guid: 09bed449082d2a54094328e2fcc207f2, type: 3}
+  weapon: {fileID: 1896006595616492748, guid: cc88f46d386f8624380ab7f9b5d03b32, type: 3}
   weaponSlot: {fileID: 1121822793001578720}
   meleeBaseAnimation: 1
 --- !u!1001 &1121822793001716608

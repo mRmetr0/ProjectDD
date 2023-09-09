@@ -18,7 +18,7 @@ public class Enemy : Entity
         yield return new WaitForSeconds(1);
         
         if (pSkill != null)
-            pSkill.Use(Skill.ToCheck.Heroes);
+            pSkill.Use();
         
         StartCoroutine(TurnEnd());
     }

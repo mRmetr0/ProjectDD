@@ -97,4 +97,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
-  skill: {fileID: 11400000, guid: 337af391f3cfd1e4abd46b4f9afd6812, type: 2}
+  skill: {fileID: 11400000, guid: 1c2424966092651439cc19a4384ea6a1, type: 2}

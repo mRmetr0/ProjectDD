@@ -53,10 +53,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dddc2a9b9d5c904795e837dbad615ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rewards:
-  - {fileID: 6152889599364023327, guid: 93f58cf1a816df3459091ae843f994e4, type: 3}
-  infestation: 2
-  appearanceOdds: 50
   zombies:
   - {fileID: 6035035138634158476}
   - {fileID: 7346132632309841101}
@@ -66,6 +62,10 @@ MonoBehaviour:
   - {fileID: 5112075572467053826}
   - {fileID: 4499208800492533988}
   - {fileID: 1704365852024975735}
+  rewards:
+  - {fileID: 6152889599364023327, guid: 93f58cf1a816df3459091ae843f994e4, type: 3}
+  appearanceOdds: 50
+  infestation: 2
 --- !u!1001 &1441242320839691366
 PrefabInstance:
   m_ObjectHideFlags: 0
