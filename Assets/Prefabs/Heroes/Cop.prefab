@@ -51,11 +51,12 @@ MonoBehaviour:
   skills:
   - {fileID: 11400000, guid: 318b30aacd4d14f409ff1083171cf3ed, type: 2}
   - {fileID: 11400000, guid: ade5ebeb645f21549bda94922c7b9824, type: 2}
+  - {fileID: 11400000, guid: 1c2424966092651439cc19a4384ea6a1, type: 2}
+  - {fileID: 11400000, guid: 275f0ecd3e9dc804ba433cc771a1842e, type: 2}
   healthBar: {fileID: 6013250941853211019}
   playerPortrait: {fileID: 21300000, guid: 56bfa4450af8d4440a96122dc75172d0, type: 3}
-  weapon: {fileID: 1896006595616492748, guid: 14351f4f446dd314690b63164d49ec9e, type: 3}
-  weaponSlot: {fileID: 7668938569948049568}
-  meleeBaseAnimation: 1
+  skins: []
+  skinIndex: 0
 --- !u!1001 &2569929580000642630
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -206,7 +207,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100192, guid: fdfb5e1c4a1b339489c0eddebb1ab872, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400166, guid: fdfb5e1c4a1b339489c0eddebb1ab872, type: 3}
       propertyPath: m_RootOrder
@@ -262,12 +263,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fdfb5e1c4a1b339489c0eddebb1ab872, type: 3}
---- !u!4 &7668938569948049568 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400168, guid: fdfb5e1c4a1b339489c0eddebb1ab872,
-    type: 3}
-  m_PrefabInstance: {fileID: 7668938569948179336}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7668938569948049582 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400166, guid: fdfb5e1c4a1b339489c0eddebb1ab872,

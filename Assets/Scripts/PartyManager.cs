@@ -1,59 +1,33 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using Events;
-using Unity.VisualScripting;
 using UnityEngine;
 
-
-[CreateAssetMenu(fileName = "PartyManager", menuName = "ScriptableObjects/Managers")]
-public class PartyManager : ScriptableObject
+public class PartyManager : MonoBehaviour
 {
-    public Hero[] heroes;
-    public Car car;
-    [NonSerialized] public EventData EventData;
-
-    private void OnValidate()
+    public static PartyManager Instance;
+    public Party currentParty;
+    public Party[] parties;
+    private void Awake()
     {
-        if (heroes.Length == 4) return;
-        Debug.LogWarning("PARTY HAS TO BE 4 SLOTS LONG!");
-        Array.Resize(ref heroes, 4);
-    }
-
-    private void OnEnable()
-    {
-        EventBus<OnRewardCar>.Subscribe(SetCar);
-    }
-
-    private void OnDisable()
-    {
-        EventBus<OnRewardCar>.Unsubscribe(SetCar);
-    }
-    
-    public void SwitchPos(int pos1, int pos2)
-    {
-        (heroes[pos1], heroes[pos2]) = (heroes[pos2], heroes[pos1]);
-    }
-
-    public void AddHero(Hero pHero)
-    {
-
-        for (int i = 0; i < heroes.Length; i++)
+        if (Instance != null)
         {
-            if (heroes[i] == null)
-            {
-                heroes[i] = pHero;
-                return;
-            }
+            Debug.LogWarning("ALREADY A PARTYMANAGER?");   
+            return;
         }
-        Debug.Log("WHOOPS, PARTY IS ALREADY FULL");
+        Instance = this;
+        DontDestroyOnLoad(this);
     }
 
-    private void SetCar(OnRewardCar pEvent)
+    public void SetStartParty(Party pParty, int[] skinIndex)
     {
-        car = pEvent.Car;
-        Debug.Log("YAY NEW CAR :3");
+        //currentParty.heroes = pParty.heroes;
+        System.Array.Copy(pParty.heroes, currentParty.heroes, 4);
+        currentParty.car = pParty.car;
+        currentParty.SkinIndexes = new int [4];
+        for (int i = 0; i < currentParty.heroes.Length; i++)
+        {
+            currentParty.SkinIndexes[i] = skinIndex[i];
+        }
     }
 }
+
+

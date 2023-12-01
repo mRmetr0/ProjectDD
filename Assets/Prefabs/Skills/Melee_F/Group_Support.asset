@@ -16,7 +16,7 @@ MonoBehaviour:
   values: {x: 3, y: 7}
   positionsToUse: 00010100
   positionsToHit: 01010101
-  type: 2
+  type: 3
   selectType: 1
   movePlayer: 0
   moveEnemy: 0

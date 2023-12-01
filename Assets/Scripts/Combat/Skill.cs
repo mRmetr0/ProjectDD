@@ -18,7 +18,8 @@ public class Skill : ScriptableObject
 
     public enum Type
     {
-        Melee,
+        Melee1,
+        Melee2,
         Ranged,
         Support
     }

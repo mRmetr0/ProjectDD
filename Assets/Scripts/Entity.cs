@@ -139,8 +139,11 @@ public class Entity : MonoBehaviour
     {
         switch (pType)
         {
-            case (Skill.Type.Melee):
-                Animator.SetTrigger("Melee");
+            case (Skill.Type.Melee1):
+                Animator.SetTrigger("Melee1");
+                break;
+            case (Skill.Type.Melee2):
+                Animator.SetTrigger("Melee2");
                 break;
             case (Skill.Type.Ranged):
                 Animator.SetTrigger("Ranged");

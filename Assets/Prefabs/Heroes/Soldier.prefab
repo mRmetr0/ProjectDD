@@ -55,9 +55,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9b62d212ddd3e3845bcd7d0dd509445d, type: 2}
   healthBar: {fileID: 6013250941853211019}
   playerPortrait: {fileID: 21300000, guid: 29d22c7f57edc7640aee0ccd2cdfe993, type: 3}
-  weapon: {fileID: 0}
-  weaponSlot: {fileID: 0}
-  meleeBaseAnimation: 0
+  skins: []
+  skinIndex: 0
 --- !u!1001 &2569929580000642630
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -207,6 +206,11 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 053ee9efcc9245c46b3f7792e982cabb, type: 2}
+    - target: {fileID: 8442623690597485434, guid: 5bf81c1e7c3fa764c9ad1ad61f333094,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8442623690604717372, guid: 5bf81c1e7c3fa764c9ad1ad61f333094,
         type: 3}
       propertyPath: m_RootOrder

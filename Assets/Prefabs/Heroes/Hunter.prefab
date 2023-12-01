@@ -48,12 +48,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 27
   speed: 6
-  skills: []
+  skills:
+  - {fileID: 11400000, guid: b1a8c4a7d10263d44a1c7ae512539734, type: 2}
+  - {fileID: 11400000, guid: 0e03b419f8e5d3043978432cc9c2c0f9, type: 2}
+  - {fileID: 11400000, guid: 7d4bd1f4f75a0cb4bbb9b9e9afac0cf7, type: 2}
+  - {fileID: 11400000, guid: 275f0ecd3e9dc804ba433cc771a1842e, type: 2}
   healthBar: {fileID: 6013250941853211019}
-  playerPortrait: {fileID: 21300000, guid: 29d22c7f57edc7640aee0ccd2cdfe993, type: 3}
-  weapon: {fileID: 0}
-  weaponSlot: {fileID: 0}
-  meleeBaseAnimation: 1
+  playerPortrait: {fileID: 21300000, guid: 0603c83fe5b82204eb28792a9994daee, type: 3}
+  skins:
+  - {fileID: 2100000, guid: 329bc0aeba4ddae44bd2452fb127ebfe, type: 2}
+  - {fileID: 2100000, guid: ea9377ad856c0564c8be5026aaedc3e0, type: 2}
+  - {fileID: 2100000, guid: 782b010d4f62f784fa3d6f7e0e0bfac5, type: 2}
 --- !u!1001 &356718268984815362
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -136,6 +141,16 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -8326650268890035464, guid: f4b7c0eba2ffbc24c83cdfc2826ee3af,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 329bc0aeba4ddae44bd2452fb127ebfe, type: 2}
+    - target: {fileID: -7261417011101051379, guid: f4b7c0eba2ffbc24c83cdfc2826ee3af,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 329bc0aeba4ddae44bd2452fb127ebfe, type: 2}
     - target: {fileID: 919132149155446097, guid: f4b7c0eba2ffbc24c83cdfc2826ee3af,
         type: 3}
       propertyPath: m_Name

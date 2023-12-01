@@ -13,7 +13,6 @@ public class BattleManager : MonoBehaviour
 {
     public static BattleManager Instance;
     public static Entity CurrentPlayer;
-    [SerializeField] private PartyManager party;
     [SerializeField] private Entity commonEnemy;
     [SerializeField] private Entity[] heroes;
     [SerializeField] private Entity[] enemies;
@@ -38,33 +37,36 @@ public class BattleManager : MonoBehaviour
         }
         
         Instance = this;
-        if (party != null)
+        if (PartyManager.Instance.currentParty == null) return;
+        
+        for (int i = heroes.Length - 1; i >= 0; i--)
         {
-            for (int i = heroes.Length - 1; i >= 0; i--)
+            if (heroes[i] == null) continue;
+            Destroy(heroes[i].gameObject);
+        }
+        for (int i = enemies.Length - 1; i >= 0; i--)
+        {
+            if (enemies[i] == null) continue;
+            Destroy(enemies[i].gameObject);
+        }
+        
+        heroes = new Entity[4];
+        enemies = new Entity[PartyManager.Instance.currentParty.EventData.infestation];
+        for (int i = 0; i < heroes.Length; i++)
+        {
+            if (PartyManager.Instance.currentParty.heroes[i] == null)
+                heroes[i] = null;
+            else
             {
-                if (heroes[i] == null) continue;
-                Destroy(heroes[i].gameObject);
-            }
-            for (int i = enemies.Length - 1; i >= 0; i--)
-            {
-                if (enemies[i] == null) continue;
-                Destroy(enemies[i].gameObject);
-            }
-            
-            heroes = new Entity[4];
-            enemies = new Entity[party.EventData.infestation];
-            for (int i = 0; i < heroes.Length; i++)
-            {
-                if (party.heroes[i] == null)
-                    heroes[i] = null;
-                else
-                    heroes[i] = Instantiate(party.heroes[i], heroPos[i].position, Quaternion.identity);
+                heroes[i] = Instantiate(PartyManager.Instance.currentParty.heroes[i], heroPos[i].position, Quaternion.identity);
+                (heroes[i] as Hero).SetSkin(PartyManager.Instance.currentParty.SkinIndexes[i]);
             }
 
-            for (int i = 0; i < enemies.Length; i++)
-            {
-                    enemies[i] = Instantiate(commonEnemy, enemyPos[i].position, Quaternion.identity);
-            }
+        }
+
+        for (int i = 0; i < enemies.Length; i++)
+        {
+            enemies[i] = Instantiate(commonEnemy, enemyPos[i].position, Quaternion.identity);
         }
     }
 

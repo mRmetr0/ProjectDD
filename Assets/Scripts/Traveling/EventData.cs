@@ -34,7 +34,7 @@ public class EventData : MonoBehaviour
                     break;
                 case (Hero):
                     Debug.Log("THATS A STRAIGTUP HUMAN BEING");
-                    TravelHUD.Instance.Party.AddHero(obj as Hero);
+                    PartyManager.Instance.currentParty.AddHero(obj as Hero);
                     break;
             }
         }

@@ -3,38 +3,32 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
+using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Serialization;
-using UnityEngine.UI;
-using Random = System.Random;
+using Random = UnityEngine.Random;
 
 public class Hero : Entity
 {
     [SerializeField] private Sprite playerPortrait;
-    [SerializeField] private Weapon weapon;
-    [SerializeField] private Transform weaponSlot;
-    [SerializeField] private bool meleeBaseAnimation;
+    
     //private int _stress;
-
+    private Renderer[] meshMaterials;
+    
+    public Material[] skins;
+    [NonSerialized] public int skinIndex = 0;
     public Sprite Portrait => playerPortrait;
+    public HealthBar hpBar => healthBar;
 
     protected override void Awake()
     {
         base.Awake();
-        Animator.SetBool("IsRanged", !meleeBaseAnimation);
-
-        if (weapon == null) return;
-        Animator.SetBool("IsRanged", weapon.type == Weapon.Type.Ranged);
-        weapon = Instantiate(weapon, weaponSlot);
-        List<Skill> list = skills.ToList(); 
-        list.Add(weapon.skill);
-        skills = list.ToArray();
+        meshMaterials = GetComponentsInChildren<Renderer>();
     }
 
     public void TestResolve()
     {
-        if (new Random().Next(0, 1) == 0)
+        if (Random.Range(0, 2) == 0)
         {
             //MELTDOWN:
             int lowestHealth = (int)(maxHealth * 0.3f);
@@ -63,5 +57,40 @@ public class Hero : Entity
         }
 
         HUDManager.Instance.SetSkillButtons(skillCheck);
+    }
+
+    public bool CanSkinChange()
+    {
+        return skins.Length > 1;
+    }
+
+    public int ChangeSkin()
+    {
+        if (skins.Length <= 1) return 0;
+        skinIndex++;
+        if (skinIndex >= skins.Length)
+        {
+            skinIndex = 0;
+        }
+
+        foreach (Renderer r in meshMaterials)
+        {
+            r.material = skins[skinIndex];
+        }
+
+        return skinIndex;
+    }
+
+    public void SetSkin(int index)
+    {
+        if (skins.Length <= 1) return;
+        if (skinIndex >= skins.Length)
+        {
+            skinIndex = 0;
+        }
+        foreach (Renderer r in meshMaterials)
+        {
+            r.material = skins[index];
+        }
     }
 }

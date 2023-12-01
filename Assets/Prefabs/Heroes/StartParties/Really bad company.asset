@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89c61c881acaaa24485ab516b0851fe8, type: 3}
+  m_Name: Really bad company
+  m_EditorClassIdentifier: 
+  heroes:
+  - {fileID: 7668938570125791231, guid: eac64da38d3bc8f4eafe5e2535c75970, type: 3}
+  - {fileID: 7668938570125791231, guid: eac64da38d3bc8f4eafe5e2535c75970, type: 3}
+  - {fileID: 7668938570125791231, guid: eac64da38d3bc8f4eafe5e2535c75970, type: 3}
+  - {fileID: 7668938570125791231, guid: eac64da38d3bc8f4eafe5e2535c75970, type: 3}
+  car: {fileID: 6152889599364023327, guid: 93f58cf1a816df3459091ae843f994e4, type: 3}
+  unlocked: 1
+  SkinIndexes: 00000000000000000000000000000000

@@ -35,8 +35,6 @@ public class TravelHUD : MonoBehaviour
     private int switchPos = -1;
     private Camera _cam;
 
-    public PartyManager Party => party;
-
     private void Awake()
     {
         if (Instance != null)
@@ -61,15 +59,16 @@ public class TravelHUD : MonoBehaviour
 
     private void Start()
     {
-        if (party.EventData != null && party.EventData.rewards.Length > 0)
-            party.EventData.GiveRewards();
+        if (PartyManager.Instance.currentParty.EventData != null && 
+            PartyManager.Instance.currentParty.EventData.rewards.Length > 0)
+            PartyManager.Instance.currentParty.EventData.GiveRewards();
         UpdateHeroDisplay();
     }
 
     private void OnEnable()
     {
         EventBus<OnShowEvent>.Subscribe(ShowEvent);
-        if (party != null) BackgroundManager.Instance.ReplaceCar(party.car);
+        if (party != null) BackgroundManager.Instance.ReplaceCar(PartyManager.Instance.currentParty.car);
     }
     private void OnDisable()
     {
@@ -104,7 +103,7 @@ public class TravelHUD : MonoBehaviour
 
     private void SetFight()
     {
-        party.EventData = BackgroundManager.EventTile.eventData;
+        PartyManager.Instance.currentParty.EventData = BackgroundManager.EventTile.eventData;
         SceneManager.LoadScene("BattleScene");
     }
     public void SwitchButton(int pPos)
@@ -115,7 +114,7 @@ public class TravelHUD : MonoBehaviour
         }
         else
         {
-            party.SwitchPos(pPos, switchPos);
+            PartyManager.Instance.currentParty.SwitchPos(pPos, switchPos);
             UpdateHeroDisplay();
             switchPos = -1;
         }
@@ -125,12 +124,12 @@ public class TravelHUD : MonoBehaviour
     {
         for (int i = 0; i < playerDisplay.Length;i++)
         {
-            if (party.heroes[i] == null)
+            if (PartyManager.Instance.currentParty.heroes[i] == null)
             {
                 playerDisplay[i].gameObject.SetActive(false);
                 continue;
             }
-            playerDisplay[i].gameObject.GetComponent<Image>().sprite = party.heroes[i].Portrait; 
+            playerDisplay[i].gameObject.GetComponent<Image>().sprite = PartyManager.Instance.currentParty.heroes[i].Portrait; 
         }
     }
 

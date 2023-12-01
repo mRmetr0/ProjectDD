@@ -16,12 +16,12 @@ MonoBehaviour:
   values: {x: 4, y: 5}
   positionsToUse: 01010101
   positionsToHit: 01010101
-  type: 1
+  type: 2
   selectType: 2
   movePlayer: 1
   moveEnemy: 1
+  dodges: 1
+  marksSelf: 1
   bleeds: 0
   stuns: 0
   marks: 0
-  dodges: 1
-  marksSelf: 1

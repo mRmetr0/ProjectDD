@@ -41,6 +41,11 @@ public class BackgroundManager : MonoBehaviour
         slider.maxValue = car.SpeedLevels.Length-1;
     }
 
+    private void Start()
+    {
+        ReplaceCar(PartyManager.Instance.currentParty.car);
+    }
+
     private void OnEnable()
     {
         EventBus<OnRewardCar>.Subscribe(ReplaceCar);
