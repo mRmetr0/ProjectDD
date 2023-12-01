@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7103b579868f65547be60e014a1a34e2, type: 3}
-  m_Name: Push_Back
+  m_Name: Forsake
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 70bf9e170404c66468950b4a0c13a0af, type: 3}
-  values: {x: 3, y: 4}
-  positionsToUse: 01000000
-  positionsToHit: 01000000
-  type: 0
-  selectType: 0
+  sprite: {fileID: 0}
+  values: {x: 2, y: 3}
+  positionsToUse: 00010101
+  positionsToHit: 00000101
+  type: 2
+  selectType: 1
   movePlayer: 0
-  moveEnemy: -1
+  moveEnemy: 0
   dodges: 0
   marksSelf: 0
   bleeds: 0
   stuns: 0
-  marks: 0
+  marks: 1
