@@ -30,13 +30,15 @@ public class Enemy : Entity
         {
             Skill skill = usable[i];
             if (!skill.InPos(Position))
-                usable.Remove(skill);
+                usable.RemoveAt(i);
+            Debug.Log($"{skill} Usable: {!skill.InPos(Position)}, Pos: {Position}, UsableLength: {usable.Count}");
         }
 
         if (usable.Count == 0) return null;
 
         Random r = new Random();
         int n = r.Next(0, usable.Count - 1);
-        return skills[n];
+        Debug.Log($"Using: {usable[n]}");
+        return usable[n];
     }
 }

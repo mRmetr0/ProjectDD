@@ -37,6 +37,7 @@ public class BattleManager : MonoBehaviour
         }
         
         Instance = this;
+        if (PartyManager.Instance == null) return;
         if (PartyManager.Instance.currentParty == null) return;
         
         for (int i = heroes.Length - 1; i >= 0; i--)

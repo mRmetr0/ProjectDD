@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 0}
   values: {x: 3, y: 5}
-  positionsToUse: 01010101
+  positionsToUse: 00010101
   positionsToHit: 01010000
   type: 0
   selectType: 2

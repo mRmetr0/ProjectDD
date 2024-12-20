@@ -1,12 +1,6 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
-using UnityEngine.Serialization;
-using Random = UnityEngine.Random;
 
 public class Skill : ScriptableObject
 {
@@ -37,14 +31,14 @@ public class Skill : ScriptableObject
     public bool[] positionsToHit = {false, false,false,false};
     public Type type;
     public Selection selectType;
-    public int movePlayer;
-    public int moveEnemy;
+    public int moveSelf;
+    public int moveTarget;
     [Header("Effects To Self")]
     public bool dodges;
     public bool marksSelf;
 
-    [NonSerialized]public bool usable;
-    [NonSerialized] public string description;
+    [NonSerialized] public bool usable;
+    [NonSerialized] public string description = "";
     private System.Random rand = new ();
 
     private void OnValidate()
@@ -65,12 +59,12 @@ public class Skill : ScriptableObject
         SetDescription();
     }
     
-    private void SetDescription()
+    public void SetDescription()
     {
         description = type.ToString();
         if (values.x == values.y) description += $", {values.x}\n";
         else description += $", {values.x}-{values.y}\n";
-            string m = "Usable: ";
+        string m = "Usable: ";
         for (int i = positionsToUse.Length-1; i >= 0; i--)
         {
             m += positionsToUse[i] ? "0 " : "- ";
@@ -82,10 +76,10 @@ public class Skill : ScriptableObject
         }
         description += m + "\n";
 
-        if (movePlayer > 0) description += "Forward " + movePlayer + " ";
-        if (movePlayer < 0) description += "Back " + Mathf.Abs(movePlayer)+ " ";
-        if (moveEnemy > 0) description += "Pull " + moveEnemy+ " ";
-        if (moveEnemy < 0) description += "Push " + Mathf.Abs(moveEnemy)+ " ";
+        if (moveSelf > 0) description += "Forward " + moveSelf + " ";
+        if (moveSelf < 0) description += "Back " + Mathf.Abs(moveSelf)+ " ";
+        if (moveTarget > 0) description += "Pull " + moveTarget+ " ";
+        if (moveTarget < 0) description += "Push " + Mathf.Abs(moveTarget)+ " ";
         // description += "\n";
         // if (bleeds) description += "Bleeds ";
         // if (stuns) description += "Stuns ";
@@ -175,7 +169,7 @@ public class Skill : ScriptableObject
                     toHit.Add(opponent);
                 }
                 break;
-            case (Selection.Select):
+            case (Selection.Select): //TODO: Get select fire
             case(Selection.Random):
                 List<Entity> hitable = new List<Entity>();
                 for (int i = 0; i < opponents.Length; i++)

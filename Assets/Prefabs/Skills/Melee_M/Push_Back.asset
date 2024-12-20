@@ -18,8 +18,8 @@ MonoBehaviour:
   positionsToHit: 01000000
   type: 0
   selectType: 0
-  movePlayer: 0
-  moveEnemy: -1
+  moveSelf: 0
+  moveTarget: -1
   dodges: 0
   marksSelf: 0
   bleeds: 0

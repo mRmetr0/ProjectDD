@@ -20,11 +20,12 @@ public class SupportSkill : Skill
         for (int i = 0; i < toHit.Length; i++) 
         {
             Entity e = toHit[i];
-            e.TakeHealing(CalcValue(), cleanses);
+            if (e.hp > 0)
+                e.TakeHealing(CalcValue(), cleanses);
         }
         if (dodges) BattleManager.CurrentPlayer.GiveMod(Entity.Modifier.Dodge);
         if (marksSelf) BattleManager.CurrentPlayer.GiveMod(Entity.Modifier.Marks);
         BattleManager.CurrentPlayer.Animate(type);
-        BattleManager.CurrentPlayer.Move(movePlayer);
+        BattleManager.CurrentPlayer.Move(moveSelf);
     }
 }

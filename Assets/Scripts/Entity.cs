@@ -45,6 +45,7 @@ public class Entity : MonoBehaviour
         if (dodge > 0)
         {
             dodge--;
+            Animator.SetTrigger("Damaged");
         }
         else
         {

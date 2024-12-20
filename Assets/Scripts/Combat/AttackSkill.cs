@@ -21,7 +21,7 @@ public class AttackSkill : Skill
         for (int i = 0; i < toHit.Length; i++) 
         {
             Entity e = toHit[i];
-            e.TakeDamage(CalcValue(), moveEnemy);
+            e.TakeDamage(CalcValue(), moveTarget);
             if (bleeds) e.GiveMod(Entity.Modifier.Bleed);
             if (stuns) e.GiveMod(Entity.Modifier.Stun);
             if (marks) e.GiveMod(Entity.Modifier.Marks);
@@ -29,6 +29,6 @@ public class AttackSkill : Skill
         if (dodges) BattleManager.CurrentPlayer.GiveMod(Entity.Modifier.Dodge);
         if (marksSelf) BattleManager.CurrentPlayer.GiveMod(Entity.Modifier.Marks);
         BattleManager.CurrentPlayer.Animate(type);
-        BattleManager.CurrentPlayer.Move(movePlayer);
+        BattleManager.CurrentPlayer.Move(moveSelf);
     }
 }

@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: Toe_to_Toe
   m_EditorClassIdentifier: 
   sprite: {fileID: 0}
-  values: {x: 3, y: 15}
-  positionsToUse: 01000000
-  positionsToHit: 01000000
-  type: 0
+  values: {x: 0, y: 0}
+  positionsToUse: 00010101
+  positionsToHit: 00000000
+  type: 3
   selectType: 0
-  movePlayer: -1
-  moveEnemy: 0
+  moveSelf: 1
+  moveTarget: 0
   dodges: 0
   marksSelf: 0
   bleeds: 0

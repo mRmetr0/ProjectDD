@@ -28,6 +28,8 @@ public class HUDManager : MonoBehaviour
     [SerializeField] private GameObject combatUI;
     [SerializeField] private GameObject winUI;
     [SerializeField] private GameObject loseUI;
+    [SerializeField] private GameObject[] resetUI;
+    [SerializeField] private bool demo = false;
     
     private SkillButton[] _skillButtons;
     private Skill _toUse;
@@ -60,8 +62,14 @@ public class HUDManager : MonoBehaviour
         
         SetText();
         SwitchUI(UIType.None);
-        winUI.GetComponentInChildren<Button>().onClick.AddListener(WinButton);
-        loseUI.GetComponentInChildren<Button>().onClick.AddListener(LoseButton);
+        if (!demo)
+        {
+            winUI.GetComponentInChildren<Button>().onClick.AddListener(WinButton);
+            loseUI.GetComponentInChildren<Button>().onClick.AddListener(LoseButton);
+            return;
+        }
+        foreach (GameObject obj in resetUI)
+            obj.GetComponentInChildren<Button>().onClick.AddListener(RestartButton);
     }
     
     public void SetSkillButtons(Skill[] pSkills)
@@ -111,6 +119,11 @@ public class HUDManager : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void RestartButton()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 }
 
 public class SkillButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
@@ -139,6 +152,7 @@ public class SkillButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         _buttonImage.sprite = pSkill.sprite;
         _button.interactable = pSkill.usable;
         _skill = pSkill;
+        _skill.SetDescription();
     }
     private void OnButtonPress()
     {
@@ -148,6 +162,7 @@ public class SkillButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     public void OnPointerEnter(PointerEventData Event)
     {
+        //TODO: ON BUILD, make descriptions work in general
         _manager.SetText(_skill.name, _skill.description);
     }
     public void OnPointerExit(PointerEventData Event)
