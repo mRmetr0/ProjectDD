@@ -7,9 +7,12 @@ public class CombatCharacter : CombatEntity
 {
     private void Update()
     {
-        // TestMovement();
+        TestMovement();
     }
 
+    /// <summary>
+    /// For testing purposes
+    /// </summary>
     private void TestMovement()
     {
         int moveDir = Input.GetKey(KeyCode.LeftShift) ? 2 : 1;

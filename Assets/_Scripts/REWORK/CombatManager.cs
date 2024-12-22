@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
+using DG.Tweening;
 using UnityEngine;
 
 public class CombatManager : MonoBehaviour
@@ -76,7 +78,8 @@ public class CombatManager : MonoBehaviour
         //TODO: lerp movement
         foreach (CombatEntity member in team)
         {
-            member.transform.position = teamPos[member.Position].transform.position;
-        }
+            member.transform.DOMove(teamPos[member.Position].transform.position, 0.7f);
+            // member.transform.position = teamPos[member.Position].transform.position;
+        }   
     }
 }
