@@ -24,24 +24,4 @@ namespace Events
             OnEvent?.Invoke(pEvent);
         }
     }
-    public sealed class OnShowEvent : UnityEvent
-    {
-        public Transform CamPos;
-        public EventData Data;
-
-        public OnShowEvent(EventTile pEventTile)
-        {
-            CamPos = pEventTile.CamPos;
-            Data = pEventTile.eventData;
-        }
-    }
-    public sealed class OnRewardCar : UnityEvent
-    {
-        public Car Car;
-
-        public OnRewardCar(Car pCar)
-        {
-            Car = pCar;
-        }
-    }
 }
