@@ -1,19 +1,29 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using DG.Tweening;
+using Unity.VisualScripting;
 using UnityEngine;
+using Random = System.Random;
+
 
 public class CombatManager : MonoBehaviour
 {
     static public CombatManager instance;
+    private static Random random = new();
+
+    //Game variables:
+    private int rounds = 0;
     
+    //Entitiy varables
     [SerializeField] private GameObject[] PlayerPos;
     [SerializeField] private GameObject[] EnemyPos;
 
     private List<CombatEntity> heroes = new ();
     private List<CombatEntity> enemies = new ();
+    private List<CombatEntity> allEntities = new ();
 
     private void Awake()
     {
@@ -47,6 +57,28 @@ public class CombatManager : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        if (instance == this)
+            instance = null;
+    }
+
+    private void StartRound()
+    {
+        rounds++;
+        allEntities = heroes;
+        allEntities.AddRange(enemies);
+        allEntities = allEntities.OrderBy(x => random.Next()).ToList();
+        NextTurn(false);
+    }
+
+    private void NextTurn(bool removeLastPlayer = true)
+    {
+        if (removeLastPlayer)
+            allEntities.RemoveAt(0);
+        allEntities[0].StartTurn();
+    }
+
     /// <summary>
     /// Moves a character into a certain direction
     /// </summary>
@@ -72,14 +104,32 @@ public class CombatManager : MonoBehaviour
                 team[entity.Position] = entity;
                 team[entity2.Position] = entity2;
             }
-
         }
         //Move each entity
-        //TODO: lerp movement
         foreach (CombatEntity member in team)
         {
             member.transform.DOMove(teamPos[member.Position].transform.position, 0.7f);
-            // member.transform.position = teamPos[member.Position].transform.position;
         }   
+    }
+
+    public void MoveToPosition(CombatEntity entity, int newPos)
+    {
+        int direction = entity.Position - newPos;
+        MovePerson(entity, direction);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        foreach (GameObject obj in PlayerPos)
+        {
+            Gizmos.DrawSphere(obj.transform.position, 1);
+        }
+
+        Gizmos.color = Color.red;
+        foreach (GameObject obj in EnemyPos)
+        {
+            Gizmos.DrawSphere(obj.transform.position, 1);
+        }
     }
 }

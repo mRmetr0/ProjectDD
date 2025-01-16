@@ -10,15 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7607e0bfc839cd9408c8fa138140a839, type: 3}
-  m_Name: Skill
+  m_Name: Slice Forward
   m_EditorClassIdentifier: 
-  title: 
+  title: Slice Forward
+  logo: {fileID: 21300000, guid: c05cced03e47d8149b3f395598735a55, type: 3}
   cooldown: 0
   targets: 0
+  usableRange: 01010100
   selfEffects:
+  - effect: 6
+    rawDamage: 0
+    dotDamage: 0
+    duration: 0
+    direction: 1
+  targetRange: 01010000
+  targetEffects:
   - effect: 0
-    rawValue: 0
+    rawDamage: 4
     dotDamage: 0
     duration: 0
     direction: 0
-  targetEffects: []

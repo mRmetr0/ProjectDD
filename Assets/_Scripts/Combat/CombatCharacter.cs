@@ -10,6 +10,12 @@ public class CombatCharacter : CombatEntity
         TestMovement();
     }
 
+    public override void StartTurn()
+    {
+        base.StartTurn();
+        CombatHUD.instance.SetPlayerUI(this);
+    }
+
     /// <summary>
     /// For testing purposes
     /// </summary>
