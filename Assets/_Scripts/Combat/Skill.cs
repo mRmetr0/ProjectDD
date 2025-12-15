@@ -81,6 +81,9 @@ public class Skill : ScriptableObject
                 case (enumEffect.bleed):
                     target.AddEffect(new BleedEffect(target, duration, dotDamage));
                     break;
+                case (enumEffect.move):
+                    CombatManager.instance.MovePerson(target, direction);
+                    break;
             }
         }
     }

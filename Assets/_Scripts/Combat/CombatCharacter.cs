@@ -12,6 +12,7 @@ public class CombatCharacter : CombatEntity
 
     public override void StartTurn()
     {
+        Debug.Log(skills);
         base.StartTurn();
         CombatHUD.instance.SetPlayerUI(this);
     }

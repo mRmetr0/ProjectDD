@@ -57,6 +57,10 @@ public class CombatManager : MonoBehaviour
         }
     }
 
+    private void Start() {
+        StartRound();
+    }
+
     private void OnDestroy()
     {
         if (instance == this)
@@ -65,17 +69,25 @@ public class CombatManager : MonoBehaviour
 
     private void StartRound()
     {
+        Debug.Log("New Round...");
         rounds++;
+        CombatHUD.instance.UpdateRoundCount(rounds);
         allEntities = heroes;
-        allEntities.AddRange(enemies);
+        // allEntities.AddRange(enemies); //TODO: FIX ROUND CALCULATIONS. THIS ADDS ENEMIES TO ALLIES LIST!!!
         allEntities = allEntities.OrderBy(x => random.Next()).ToList();
         NextTurn(false);
     }
 
-    private void NextTurn(bool removeLastPlayer = true)
+    public void NextTurn(bool removeLastPlayer = true)
     {
+        Debug.Log("Next Turn...");
         if (removeLastPlayer)
             allEntities.RemoveAt(0);
+        if (allEntities.Count == 0)
+        {
+            StartRound();
+            return;
+        }
         allEntities[0].StartTurn();
     }
 

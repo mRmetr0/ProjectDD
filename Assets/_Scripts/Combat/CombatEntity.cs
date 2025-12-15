@@ -9,14 +9,11 @@ public class CombatEntity : MonoBehaviour
     private int maxHealth;
     private int health;
 
-    private List<Skill> skills;
-    private List<Effect> effects;
+    [SerializeField] protected List<Skill> skills;
+    private List<Effect> effects = new();
     
-
     private int position;
-
     public List<Skill> Skills => skills;
-    
     
     //Publics:
     public int Position
@@ -37,6 +34,13 @@ public class CombatEntity : MonoBehaviour
         {
             effects[i].CauseEffect();
         }
+        //QUICKFIX: SKIP TURN IF HAS NO SKILLS
+        if (skills.Count == 0) EndTurn();
+    }
+
+    public virtual void EndTurn()
+    {
+        CombatManager.instance.NextTurn();
     }
 
     public void AddEffect(Effect addedEffect)

@@ -15,6 +15,7 @@ public class CombatHUD : MonoBehaviour
     [SerializeField] private TMP_Text skillTitle;
     [SerializeField] private GameObject SkillButtonHolder;
     private List<SkillButton> skillButtons = new();
+    private TMP_Text roundCounter;
 
     private void Awake()
     {
@@ -35,6 +36,7 @@ public class CombatHUD : MonoBehaviour
             skillButton.SetUp(this);
             skillButtons.Add(skillButton);
         }
+        roundCounter = GetComponentInChildren<TMP_Text>();
     }
 
     private void OnDestroy()
@@ -45,27 +47,51 @@ public class CombatHUD : MonoBehaviour
 
     public void SetPlayerUI(CombatCharacter combatCharacter = null)
     {
-        bool show = combatCharacter is null;
+        bool show = combatCharacter is not null;
         PlayerUIHolder.SetActive(show);
-        if (!show)
-            return;
-        for (int i = skillButtons.Count - 1; i >= 0; i--)
+        if (!show) return;
+        for (int i = 0; i < skillButtons.Count; i++)
         {
             SkillButton button = skillButtons[i];
             //If more buttons then skills, stop
-            bool showButton = i > combatCharacter.Skills.Count - 1;
+            bool showButton = i <= combatCharacter.Skills.Count - 1;
             button.gameObject.SetActive(showButton);
-            if (showButton)
-                continue;
+            if (!showButton) continue;
+            button.SetSkill(combatCharacter.Skills[i]);
         }
     }
 
-    public class SkillButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+    public void HoverSkillButton(SkillButton button = null)
+    {
+        if (button is not null)
+            skillTitle.text = button.Skill.name;
+        else
+            skillTitle.text = "";
+    }
+
+    public void SelectSkillButton(SkillButton button)
+    {
+        foreach (SkillButton child in skillButtons)
+        {
+            child.SetMarked(child == button);
+        }
+    }
+
+    public void UpdateRoundCount(int newCount)
+    {
+        roundCounter.text = "Round: " + newCount;
+    }
+
+    public class SkillButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
     {
         private Button button;
         private CombatHUD hud;
         private Skill skill;
         private Image image;
+        private Color unmarked = Color.white;
+        private Color marked = Color.gray;
+
+        public Skill Skill => skill;
         
         public void SetUp(CombatHUD _hud)
         {
@@ -80,13 +106,22 @@ public class CombatHUD : MonoBehaviour
             image.sprite = _skill.logo;
         }
 
+        public void SetMarked(bool isMarked)
+        {
+            image.color = isMarked ? marked : unmarked;
+        }
+
         public void OnPointerEnter(PointerEventData data)
         {
-            
+            hud.HoverSkillButton(this);
         }
         public void OnPointerExit(PointerEventData data)
         {
-            
+            hud.HoverSkillButton(null);
+        }
+        public void OnPointerClick(PointerEventData data)
+        {
+            hud.SelectSkillButton(this);
         }
     }
 }
