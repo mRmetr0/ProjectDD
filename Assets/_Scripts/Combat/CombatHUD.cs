@@ -16,6 +16,9 @@ public class CombatHUD : MonoBehaviour
     [SerializeField] private GameObject SkillButtonHolder;
     private List<SkillButton> skillButtons = new();
     private TMP_Text roundCounter;
+    private SkillButton selectedButton = null;
+
+    public SkillButton SelectedButton => selectedButton;
 
     private void Awake()
     {
@@ -47,6 +50,9 @@ public class CombatHUD : MonoBehaviour
 
     public void SetPlayerUI(CombatCharacter combatCharacter = null)
     {
+        selectedButton = null;
+        HoverSkillButton();
+        SelectSkillButton(null);
         bool show = combatCharacter is not null;
         PlayerUIHolder.SetActive(show);
         if (!show) return;
@@ -57,6 +63,7 @@ public class CombatHUD : MonoBehaviour
             bool showButton = i <= combatCharacter.Skills.Count - 1;
             button.gameObject.SetActive(showButton);
             if (!showButton) continue;
+            //TODO: Check if player can use skill, deactivate if can't
             button.SetSkill(combatCharacter.Skills[i]);
         }
     }
@@ -71,9 +78,12 @@ public class CombatHUD : MonoBehaviour
 
     public void SelectSkillButton(SkillButton button)
     {
+        if (selectedButton == button) selectedButton = null;
+        else selectedButton = button;
+
         foreach (SkillButton child in skillButtons)
         {
-            child.SetMarked(child == button);
+            child.SetMarked(child == selectedButton);
         }
     }
 

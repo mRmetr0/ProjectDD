@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7607e0bfc839cd9408c8fa138140a839, type: 3}
   m_Name: Disengage
   m_EditorClassIdentifier: 
-  title: 
-  logo: {fileID: 0}
+  title: Disengage
+  logo: {fileID: 21300000, guid: 0d769e701aca3254bb2f02e03f2e88c8, type: 3}
   cooldown: 0
-  targets: 0
+  targets: 2
+  cleave: 0
   usableRange: 01010000
   selfEffects:
   - effect: 6

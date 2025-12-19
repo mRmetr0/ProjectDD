@@ -11,6 +11,11 @@ using Random = System.Random;
 
 public class CombatManager : MonoBehaviour
 {
+    public enum Side
+    {
+        Heroes, 
+        Enemies
+    }
     static public CombatManager instance;
     private static Random random = new();
 
@@ -36,8 +41,13 @@ public class CombatManager : MonoBehaviour
         instance = this;
         
         //TODO: Have entity data load in through overworld scene.
-        foreach (GameObject pos in PlayerPos)
+        for (int i = 0; i < PlayerPos.Length; i++)
         {
+            GameObject pos = PlayerPos[i];
+
+            CombatPosition comPos = pos.AddComponent<CombatPosition>();
+            comPos.SetUp(this, i, Side.Heroes);
+
             CombatEntity entity = pos.GetComponentInChildren<CombatEntity>();
             if (entity is not null)
             {
@@ -46,8 +56,13 @@ public class CombatManager : MonoBehaviour
             }
 
         }
-        foreach (GameObject pos in EnemyPos)
+
+        for (int i = 0; i < EnemyPos.Length; i++)
         {
+            GameObject pos = EnemyPos[i];
+
+            CombatPosition comPos = pos.AddComponent<CombatPosition>();
+            comPos.SetUp(this, i, Side.Enemies);
             CombatEntity entity = pos.GetComponentInChildren<CombatEntity>();
             if (entity is not null)
             {
@@ -67,13 +82,19 @@ public class CombatManager : MonoBehaviour
             instance = null;
     }
 
+    public List<CombatEntity> GetCombatSide(Side side)
+    {
+        return side == Side.Heroes ? heroes : enemies;
+    }
+
     private void StartRound()
     {
         Debug.Log("New Round...");
         rounds++;
         CombatHUD.instance.UpdateRoundCount(rounds);
-        allEntities = heroes;
-        // allEntities.AddRange(enemies); //TODO: FIX ROUND CALCULATIONS. THIS ADDS ENEMIES TO ALLIES LIST!!!
+        allEntities = new();
+        allEntities.AddRange(heroes);
+        allEntities.AddRange(enemies);
         allEntities = allEntities.OrderBy(x => random.Next()).ToList();
         NextTurn(false);
     }
@@ -91,6 +112,36 @@ public class CombatManager : MonoBehaviour
         allEntities[0].StartTurn();
     }
 
+    public void OnPosClick(Side side, int pos)
+    {
+        bool isValid = false;
+        if (CombatHUD.instance.SelectedButton is null) return;
+        Skill toUse = CombatHUD.instance.SelectedButton.Skill;
+        switch (toUse.targets)
+        {
+            case Skill.Targets.opponent:
+                if (side != Side.Enemies) return;
+                if (!toUse.CanHitPos(pos)) return;
+                toUse.UseSkill(allEntities[0], enemies[pos]);
+                isValid = true;
+                break;
+            case Skill.Targets.team:
+                if (side != Side.Heroes) return;
+                if (!toUse.CanHitPos(pos)) return;
+                toUse.UseSkill(allEntities[0], heroes[pos]);
+                isValid = true;
+                break;
+            //TODO: ADD TARGET.SELF SKILLS
+            case Skill.Targets.self:
+                if (side != Side.Heroes) return;
+                if (pos != allEntities[0].Position) return;
+                toUse.UseSkill(allEntities[0], heroes[pos]);
+                isValid = true;
+                break;
+        }
+        if (isValid) allEntities[0].EndTurn();
+    }
+
     /// <summary>
     /// Moves a character into a certain direction
     /// </summary>
@@ -101,14 +152,12 @@ public class CombatManager : MonoBehaviour
         List<CombatEntity> team = heroes.Contains(entity) ? heroes : enemies;
         GameObject[] teamPos = team == heroes ? PlayerPos : EnemyPos;
         if (team.Count == 1) return;
-        // Debug.Log("CAN MOVE IN TEAM");
         //Set positions of each entity
         int directionNormal = direction / Mathf.Abs(direction);
         for (int i = 0; i < Mathf.Abs(direction); i++)
         {
             if ((direction < 0 && entity.Position == 0) || (direction > 0 && entity.Position == team.Count - 1))
                 break;
-            // Debug.Log("CAN MOVE IN POSITION");
             CombatEntity entity2 = team[entity.Position + directionNormal];
             if (entity2 is not null)
             {
@@ -144,4 +193,33 @@ public class CombatManager : MonoBehaviour
             Gizmos.DrawSphere(obj.transform.position, 1);
         }
     }
+
+    public class CombatPosition : MonoBehaviour
+    {
+        private CombatManager manager;
+        private int position;
+        private Side side;
+        public void SetUp(CombatManager _manager, int _position, Side _side)
+        {
+            manager = _manager;
+            position = _position;
+            side = _side;
+        }
+
+        private void OnMouseEnter() //TODO: Show Entity stats on hover
+        {
+            // Debug.Log("Mouse Entered");
+        }
+
+        private void OnMouseExit() //TODO: Hide Entity stats on hover
+        {
+            // Debug.Log("Mouse Exited");
+        }
+
+        private void OnMouseDown()
+        {
+            manager.OnPosClick(side, position);
+        }
+    }
+
 }
